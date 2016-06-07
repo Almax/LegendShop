@@ -9,10 +9,10 @@ import React, {
 } from 'react-native';
 
 import TabNavigator from 'react-native-tab-navigator';
-import HomePage from './component/HomePage';
-import CategoryPage from './component/CategoryPage';
-import CartPage from './component/CartPage';
-import MinePage from './component/MinePage';
+import HomePage from './HomePage';
+import CategoryPage from './CategoryPage';
+import CartPage from './CartPage';
+import MinePage from './MinePage';
 
 const HOME = '首页';
 const HOME_NORMAL = require('./image/icon_main_index_my_home_@2x.png');

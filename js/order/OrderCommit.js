@@ -13,19 +13,19 @@ import React,{
   View,
 } from 'react-native';
 
-import Back from '../Back';
+import Back from '../common/Back';
 import OrderProductCell from './OrderProductCell';
 
 //购物车测试数据
 const ORDER_DATAS=[
  {title:'汉密尔顿(Hamiliton)旗舰店',content:[
-    {img:require('../../image/cart_banner.jpg'),name:'汉密尔顿(Hamiliton)卡其海军先锋系列 自动机械男表h88475345',
+    {img:require('../image/cart_banner.jpg'),name:'汉密尔顿(Hamiliton)卡其海军先锋系列 自动机械男表h88475345',
     num:'x1',price:'¥5599.00'},
-    {img:require('../../image/cart_banner.jpg'),name:'汉密尔顿(Hamiliton)卡其海军先锋系列 自动机械男表adsfasdf',
+    {img:require('../image/cart_banner.jpg'),name:'汉密尔顿(Hamiliton)卡其海军先锋系列 自动机械男表adsfasdf',
     num:'x1',price:'125555.00'}]
  },
  {title:'百达翡丽独家直营店',content:[
-    {img:require('../../image/cart_banner.jpg'),name:'百达翡丽(Hamiliton)卡其海军先锋系列 自动机械男表h88475345',
+    {img:require('../image/cart_banner.jpg'),name:'百达翡丽(Hamiliton)卡其海军先锋系列 自动机械男表h88475345',
     num:'x1',price:'1256000.00'},]
  },
 ];
@@ -89,14 +89,14 @@ export default class OrderCommit extends React.Component{
                 <View>
                   <View style={{flexDirection:'row'}}>
                       <View style={styles.container2}>
-                          <Image source={require('../../image/order/icon_name.png')} style={styles.icon}/>
+                          <Image source={require('./img/icon_name.png')} style={styles.icon}/>
                           <TextInput
                               keyboardType='web-search'
                               placeholder='姓名'
                               style={styles.inputText}/>
                       </View>
                       <View style={styles.container2}>
-                        <Image source={require('../../image/order/icon_phone.png')} style={styles.icon}/>
+                        <Image source={require('./img/icon_phone.png')} style={styles.icon}/>
                         <TextInput
                             keyboardType='web-search'
                             placeholder='电话'
@@ -105,14 +105,14 @@ export default class OrderCommit extends React.Component{
                   </View>
 
                   <View style={[styles.container2,{width:300,marginTop:8,}]}>
-                      <Image source={require('../../image/order/icon_add.png')} style={styles.icon}/>
+                      <Image source={require('./img/icon_add.png')} style={styles.icon}/>
                       <TextInput
                           keyboardType='web-search'
                           placeholder='地址'
                           style={styles.inputText}/>
                   </View>
                 </View>
-                <Image source={require('../../image/order/icon_advance_gray.png')} style={styles.icon}/>
+                <Image source={require('./img/icon_advance_gray.png')} style={styles.icon}/>
               </View>
 
               <View style={styles.container1}>
@@ -137,7 +137,7 @@ export default class OrderCommit extends React.Component{
               <View style={styles.separate}/>
               <View style={[styles.container3,{marginTop:0}]}>
                 <Text style={styles.text}>微信支付</Text>
-                <Image source={require('../../image/order/icon_weixin_pay.jpg')} style={[styles.icon,{marginLeft:5}]}/>
+                <Image source={require('./img/icon_weixin_pay.jpg')} style={[styles.icon,{marginLeft:5}]}/>
               </View>
 
               <View style={styles.container3}>

@@ -42,7 +42,7 @@ export default class TopInfo extends React.Component {
         return (
         <View style={{flex:1}}>
           <View style={styles.container1}>
-            <Image source={require('../../image/mine/icon_member.png')} style={styles.user}/>
+            <Image source={require('./img/icon_member.png')} style={styles.user}/>
             <View style={styles.container2}>
               <Text style={styles.text1}>
                 用户姓名
@@ -78,7 +78,7 @@ export default class TopInfo extends React.Component {
               </Text>
             </View>
             <View>
-              <Image source={require('../../image/mine/icon_goods_browse.png')} style={styles.image}/>
+              <Image source={require('./img/icon_goods_browse.png')} style={styles.image}/>
               <Text style={styles.text1}>
                  我的足迹
               </Text>

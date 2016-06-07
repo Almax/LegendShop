@@ -30,7 +30,7 @@ export default class CartCell extends React.Component{
           onHideUnderlay={this.props.onUnhighlight}>
           <View style={styles.row}>
             <Image
-              source={require('../../image/icon_button_i_02.png')}
+              source={require('../image/icon_button_i_02.png')}
               style={styles.icon}
             />
             <Image
@@ -48,7 +48,7 @@ export default class CartCell extends React.Component{
               </View>
             </View>
             <Image
-              source={require('../../image/icon_address_delete.png')}
+              source={require('../image/icon_address_delete.png')}
               style={styles.icon}
             />
           </View>

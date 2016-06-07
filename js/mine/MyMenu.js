@@ -11,52 +11,52 @@ import React, {
   StyleSheet,
 } from 'react-native';
 
-import MenuButton from '../MenuButton';
+import MenuButton from '../common/MenuButton';
 
 const ITEMS = [[{
-  img : require('../../image/mine/icon_mine_order_1.png'),
+  img : require('./img/icon_mine_order_1.png'),
   txt : '待付款',
 },{
-  img : require('../../image/mine/icon_mine_order_2.png'),
+  img : require('./img/icon_mine_order_2.png'),
   txt : '待发货',
 },{
-  img : require('../../image/mine/icon_mine_order_3.png'),
+  img : require('./img/icon_mine_order_3.png'),
   txt : '待收货',
 },{
-  img : require('../../image/mine/icon_mine_order_4.png'),
+  img : require('./img/icon_mine_order_4.png'),
   txt : '退款/售后',
 }
 ],[{
-  img : require('../../image/mine/icon_my_balance.png'),
+  img : require('./img/icon_my_balance.png'),
   txt : '我的金额',
 },{
-  img : require('../../image/mine/icon_my_coupon.png'),
+  img : require('./img/icon_my_coupon.png'),
   txt : '我的金券',
 },{
-  img : require('../../image/mine/icon_red_packets.png'),
+  img : require('./img/icon_red_packets.png'),
   txt : '我的红包',
 },{
-  img : require('../../image/mine/icon_my_integral.png'),
+  img : require('./img/icon_my_integral.png'),
   txt : '我的积分',
 }
 ],[{
-  img : require('../../image/mine/icon_my_fans.png'),
+  img : require('./img/icon_my_fans.png'),
   txt : '我的粉丝',
 },{
-  img : require('../../image/mine/icon_fans_order.png'),
+  img : require('./img/icon_fans_order.png'),
   txt : '粉丝订单',
 },{
-  img : require('../../image/mine/icon_share_profit.png'),
+  img : require('./img/icon_share_profit.png'),
   txt : '分享收益',
 },{
-  img : require('../../image/mine/icon_share_products.png'),
+  img : require('./img/icon_share_products.png'),
   txt : '分享产品',
 }
 ]];
 
-const TEXTS= [{title:'我的订单',content:'查看全部订单>>',img:require('../../image/mine/icon_my_order.png')},
-              {title:'我的钱包',content:'查看详情>>',img:require('../../image/mine/icon_my_wallet.png')},
-              {title:'我的分享',content:'查看详情>>',img:require('../../image/mine/icon_my_share.png')}];
+const TEXTS= [{title:'我的订单',content:'查看全部订单>>',img:require('./img/icon_my_order.png')},
+              {title:'我的钱包',content:'查看详情>>',img:require('./img/icon_my_wallet.png')},
+              {title:'我的分享',content:'查看详情>>',img:require('./img/icon_my_share.png')}];
 
 export default class MyMenu extends React.Component {
 

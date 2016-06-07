@@ -13,10 +13,10 @@ import React,{
   View,
 } from 'react-native';
 
-import Back from '../Back';
+import Back from '../common/Back';
 import Swiper from 'react-native-swiper';
 import ScrollTabPage from './ScrollTabPage';
-import OrderCommit from './../Order/OrderCommit';
+import OrderCommit from '../order/OrderCommit';
 
 const PRODUCT_DETAIL_URL='http://react.legendshop.cn/productDetail?prodId=';
 
@@ -89,7 +89,7 @@ export default class ProductDetail extends React.Component{
         <View style={styles.bottom}>
           <TouchableOpacity onPress={()=>this._onFollowClick('关注')} activeOpacity={0.7}>
             <View style={styles.bottomContainer1}>
-                <Image source={require('../../image/product/icon_collection.png')} style={styles.icon}/>
+                <Image source={require('./img/icon_collection.png')} style={styles.icon}/>
                 <Text style={[styles.text1,{color:'white',marginLeft:5}]}>关注</Text>
             </View>
           </TouchableOpacity>

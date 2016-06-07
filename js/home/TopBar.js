@@ -15,9 +15,9 @@ export default class Header extends Component {
         return (
           <View>
             <View style={styles.container}>
-                <Image source={require('../../image/home_logo_@2x.png')} style={styles.logo}/>
+                <Image source={require('../image/home_logo_@2x.png')} style={styles.logo}/>
                 <View style={styles.searchBox}>
-                    <Image source={require('../../image/lib_story_img_search_bt_@2x.png')} style={styles.searchIcon}/>
+                    <Image source={require('../image/lib_story_img_search_bt_@2x.png')} style={styles.searchIcon}/>
                     <TextInput
                         keyboardType='web-search'
                         placeholder='搜索...'

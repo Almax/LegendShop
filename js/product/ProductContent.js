@@ -12,10 +12,10 @@ import React,{
   View,
 } from 'react-native';
 
-import Back from '../Back';
+import Back from '../common/Back';
 import Swiper from 'react-native-swiper';
 import ScrollTabPage from './ScrollTabPage';
-import OrderCommit from './../Order/OrderCommit';
+import OrderCommit from '../order/OrderCommit';
 
 //详情具体展示页面，这里需要处理四种对应的组件变化状态
 //prodProp属性变化，item选中变化，数量选中变化，评论区数据变化
@@ -107,9 +107,9 @@ export default class ProductContent extends React.Component{
         <Swiper style={styles.wrapper} height={200}
                 paginationStyle={styles.paginationStyle}
                 loop={true}>
-              <Image  source={require('../../image/product/product_banner1_@2x.jpg')}/>
-              <Image  source={require('../../image/product/product_banner1_@2x.jpg')}/>
-              <Image  source={require('../../image/product/product_banner1_@2x.jpg')}/>
+              <Image  source={require('./img/product_banner1_@2x.jpg')}/>
+              <Image  source={require('./img/product_banner1_@2x.jpg')}/>
+              <Image  source={require('./img/product_banner1_@2x.jpg')}/>
         </Swiper>
 
         <View style={styles.container1}>
@@ -136,11 +136,11 @@ export default class ProductContent extends React.Component{
             <Text style={[styles.text1,{marginTop:10,marginBottom:10}]}>现货，广州城区12:00前完成订单，预计当日（11月28日）送达</Text>
             <View style={[styles.container3,{marginLeft:0}]}>
               <View style={[styles.container4,styles.border,{marginLeft:0}]}>
-                <Image source={require('../../image/product/icon_commodity_cod.png')} style={styles.img}/>
+                <Image source={require('./img/icon_commodity_cod.png')} style={styles.img}/>
                 <Text style={[styles.text1,{marginLeft:5}]}>货到付款</Text>
               </View>
               <View style={[styles.container4,styles.border]}>
-                <Image source={require('../../image/product/icon_commodity_free.png')} style={styles.img}/>
+                <Image source={require('./img/icon_commodity_free.png')} style={styles.img}/>
                 <Text style={[styles.text1,{marginLeft:5}]}>免运费</Text>
               </View>
             </View>

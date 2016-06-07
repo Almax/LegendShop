@@ -9,7 +9,7 @@ import React, {
   Dimensions,
 } from 'react-native';
 
-import DataRepository from './data/DataRepository';
+import DataRepository from './common/DataRepository';
 import Animated from 'Animated';
 import Main from './MainScreen';
 

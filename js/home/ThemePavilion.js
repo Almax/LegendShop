@@ -9,12 +9,12 @@ import React, {
 } from 'react-native';
 
 const THEME_BANNER_IMGS = [
-    require('../../image/themes_banner01_@2x.jpg'),
-    require('../../image/themes_banner02_@2x.jpg'),
-    require('../../image/themes_banner03_@2x.jpg'),
-    require('../../image/themes_banner04_@2x.jpg'),
-    require('../../image/themes_banner05_@2x.jpg'),
-    require('../../image/themes_banner06_@2x.jpg'),
+    require('../image/themes_banner01_@2x.jpg'),
+    require('../image/themes_banner02_@2x.jpg'),
+    require('../image/themes_banner03_@2x.jpg'),
+    require('../image/themes_banner04_@2x.jpg'),
+    require('../image/themes_banner05_@2x.jpg'),
+    require('../image/themes_banner06_@2x.jpg'),
 ];
  export default class ThemePavilion extends React.Component {
 

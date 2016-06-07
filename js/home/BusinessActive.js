@@ -9,9 +9,9 @@ import React, {
 } from 'react-native';
 
 const ACTIVE_BANNER_IMGS = [
-    require('../../image/activity_banner01_@2x.jpg'),
-    require('../../image/activity_banner02_@2x.jpg'),
-    require('../../image/activity_banner03_@2x.jpg'),
+    require('../image/activity_banner01_@2x.jpg'),
+    require('../image/activity_banner02_@2x.jpg'),
+    require('../image/activity_banner03_@2x.jpg'),
 ];
  export default class BusinessActive extends React.Component {
 

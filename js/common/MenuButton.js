@@ -25,7 +25,7 @@ export default class MenuButton extends React.Component {
     };
 
     static defaultProps = {
-      renderIcon:require('../image/mine/icon_mine_order_1.png'),
+      renderIcon:require('../mine/img/icon_mine_order_1.png'),
       showText:'',
     };
 

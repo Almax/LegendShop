@@ -8,13 +8,13 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
-import ProductDetail from '../Product/ProductDetail';
+import ProductDetail from '../product/ProductDetail';
 
 const RECOMMEND_IMGS = [
-    require('../../image/hotprod_banner01_@2x.jpg'),
-    require('../../image/hotprod_banner02_@2x.jpg'),
-    require('../../image/hotprod_banner03_@2x.jpg'),
-    require('../../image/hotprod_banner04_@2x.jpg')
+    require('../image/hotprod_banner01_@2x.jpg'),
+    require('../image/hotprod_banner02_@2x.jpg'),
+    require('../image/hotprod_banner03_@2x.jpg'),
+    require('../image/hotprod_banner04_@2x.jpg')
 ];
  export default class Recommend extends React.Component {
 

@@ -12,27 +12,27 @@ import React, {
     TouchableHighlight,
 } from 'react-native';
 
-import TopBar from './Home/TopBar';
+import TopBar from './home/TopBar';
 import Swiper from 'react-native-swiper';
-import MenuButton from './MenuButton';
-import Recommend from './Home/Recommend';
-import BusinessActive from './Home/BusinessActive';
-import BusinessNew from './Home/BusinessNew';
-import ThemePavilion from './Home/ThemePavilion';
+import MenuButton from './common/MenuButton';
+import Recommend from './home/Recommend';
+import BusinessActive from './home/BusinessActive';
+import BusinessNew from './home/BusinessNew';
+import ThemePavilion from './home/ThemePavilion';
 
-import ProductList from './Product/ProductList'
-import ProductDetail from './Product/ProductDetail';
+import ProductList from './product/ProductList'
+import ProductDetail from './product/ProductDetail';
 
 const BANNER_IMGS = [
-    require('../image/img_home_banner1_@2x.jpg'),
-    require('../image/img_home_banner2_@2x.jpg'),
-    require('../image/img_home_banner3_@2x.jpg'),
+    require('./image/img_home_banner1_@2x.jpg'),
+    require('./image/img_home_banner2_@2x.jpg'),
+    require('./image/img_home_banner3_@2x.jpg'),
 ];
 const adv_IMGS= [
-    require('../image/home_adv_@2x.jpg'),
-    require('../image/home_adv_@2x.jpg'),
-    require('../image/home_adv_@2x.jpg'),
-    require('../image/home_adv_@2x.jpg')
+    require('./image/home_adv_@2x.jpg'),
+    require('./image/home_adv_@2x.jpg'),
+    require('./image/home_adv_@2x.jpg'),
+    require('./image/home_adv_@2x.jpg')
 ];
 
 //首页配置，各组件导入
@@ -102,30 +102,30 @@ export default class HomePage extends Component {
                         </TouchableHighlight>
                 </Swiper>
                 <View style={styles.menuView1}>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag1_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag1_@2x.png')}
                                 showText={'精品'}
                                 onClick={()=>this._onMenuClick('精品')}/>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag2_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag2_@2x.png')}
                                 showText={'热卖'}
                                 onClick={()=>this._onMenuClick('热卖')}/>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag3_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag3_@2x.png')}
                                 showText={'促销'}
                                 onClick={()=>this._onMenuClick('促销')}/>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag4_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag4_@2x.png')}
                                 showText={'团购'}
                                 onClick={()=>this._onMenuClick('团购')}/>
                 </View>
                 <View style={styles.menuView2}>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag5_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag5_@2x.png')}
                                 showText={'积分'}
                                 onClick={()=>this._onMenuClick('积分')}/>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag6_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag6_@2x.png')}
                                 showText={'试用'}
                                 onClick={()=>this._onMenuClick('试用')}/>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag7_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag7_@2x.png')}
                                 showText={'类目'}
                                 onClick={()=>this._onMenuClick('类目')}/>
-                    <MenuButton renderIcon={require('../image/icon_home_center_tag8_@2x.png')}
+                    <MenuButton renderIcon={require('./image/icon_home_center_tag8_@2x.png')}
                                 showText={'品牌'}
                                 onClick={()=>this._onMenuClick('品牌')}/>
                 </View>

@@ -13,9 +13,9 @@ import React, {
     Dimensions,
 } from 'react-native';
 
-import TopInfo from './Mine/TopInfo';
-import MyMenu from './Mine/MyMenu';
-import MyItem from './Mine/MyItem';
+import TopInfo from './mine/TopInfo';
+import MyMenu from './mine/MyMenu';
+import MyItem from './mine/MyItem';
 
 //个人中心，涉及数据变化的部分进行组件封装，便于后期维护修改
 
@@ -40,7 +40,7 @@ export default class MinePage extends React.Component {
               </View>
               <View style={styles.separate}/>
               <ScrollView style={styles.container1}>
-                      <Image source={require('../image/mine/mine_bg.jpg')} style={styles.backgroundImage}/>
+                      <Image source={require('./image/mine_bg.jpg')} style={styles.backgroundImage}/>
                       <TopInfo/>
                       <MyMenu/>
                       <MyItem/>

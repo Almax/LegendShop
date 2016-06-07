@@ -13,8 +13,8 @@ import React, {
     Platform,
 } from 'react-native';
 
-import ExpandTab from './ExpandTab';
-import ProductDetail from './Product/ProductDetail';
+import ExpandTab from './common/ExpandTab';
+import ProductDetail from './product/ProductDetail';
 const CATEGORY_URL='http://react.legendshop.cn/category';//分类接口q
 
 export default class CategoryPage extends React.Component {
@@ -68,7 +68,7 @@ export default class CategoryPage extends React.Component {
           <View style={{flex: 1}}>
             <View style={styles.container}>
                 <View style={styles.searchBox}>
-                    <Image source={require('../image/lib_story_img_search_bt_@2x.png')} style={styles.searchIcon}/>
+                    <Image source={require('./image/lib_story_img_search_bt_@2x.png')} style={styles.searchIcon}/>
                     <TextInput
                         keyboardType='web-search'
                         placeholder='搜索...'

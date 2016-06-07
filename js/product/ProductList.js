@@ -15,7 +15,7 @@ import dismissKeyboard from 'dismissKeyboard';
 import ProductCell from './ProductCell';
 import ProductDetail from './ProductDetail';
 
-import Back from '../Back';
+import Back from '../common/Back';
 
 // const API_URL = 'http://www1.lbd99.com:8100/solr/collection1/select?sort=price desc,sales desc&rows=10&start=';
 
@@ -27,37 +27,26 @@ let resultsCache = {
 let LOADING = {};//这个保证获取数据时停止render避免不必要的渲染
 
 //模拟加载更多的效果，总共两页数据
-const DATA1=[{img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-];
-const DATA2=[{img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
-             {img : require('../../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+const DATA1=[{img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner01_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+  ];
+
+const DATA2=[{img : require('../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+             {img : require('../image/hotprod_banner02_@2x.jpg'),title : '2015款七匹狼男士手提包真皮商务大容量手抓包',price1:'199.000',price2:'219.00'},
+
 ];
 
 export default class ProductList extends React.Component{

@@ -23,22 +23,22 @@ export default class ScrollTabPage extends React.Component{
                                                style={styles.tabBar}/>}>
                   <ScrollView pointerEvents='box-only' tabLabel='图文详情'>
                       <View tabLabel='图文详情'>
-                        <Image  source={require('../../image/product/product_banner1_@2x.jpg')}/>
+                        <Image  source={require('./img/product_banner1_@2x.jpg')}/>
                       </View>
                   </ScrollView>
                   <ScrollView pointerEvents='box-only' tabLabel='规格参数'>
                       <View  tabLabel='规格参数' >
-                        <Image  source={require('../../image/product/product_banner1_@2x.jpg')}/>
+                        <Image  source={require('./img/product_banner1_@2x.jpg')}/>
                       </View>
                   </ScrollView >
                   <ScrollView pointerEvents='box-only' tabLabel='评论(5567)'>
                       <View tabLabel='评论(5567)'>
-                        <Image  source={require('../../image/product/product_banner1_@2x.jpg')}/>
+                        <Image  source={require('./img/product_banner1_@2x.jpg')}/>
                       </View>
                   </ScrollView>
                   <ScrollView pointerEvents='box-only' tabLabel='售后服务'>
                       <View tabLabel='售后服务'>
-                        <Image  source={require('../../image/product/product_banner1_@2x.jpg')}/>
+                        <Image  source={require('./img/product_banner1_@2x.jpg')}/>
                       </View>
                   </ScrollView>
 

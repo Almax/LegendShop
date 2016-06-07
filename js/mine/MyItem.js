@@ -12,19 +12,19 @@ import React, {
 } from 'react-native';
 
 const ITEMS = [{
-  img : require('../../image/mine/icon_my_comments.png'),
+  img : require('./img/icon_my_comments.png'),
   txt1 : '我的评价',
   txt2 : '',
 },{
-  img : require('../../image/mine/icon_recommend.png'),
+  img : require('./img/icon_recommend.png'),
   txt1 : '最新推荐',
   txt2 : '',
 },{
-  img : require('../../image/mine/icon_help.png'),
+  img : require('./img/icon_help.png'),
   txt1 : '问题咨询',
   txt2 : '',
 },{
-  img : require('../../image/mine/icon_feedback.png'),
+  img : require('./img/icon_feedback.png'),
   txt1 : '意见反馈',
   txt2 : '',
 }
@@ -63,7 +63,7 @@ export default class MyItem extends React.Component {
                         <Text style={styles.text2}>
                           {item.txt2}
                         </Text>
-                        <Image source={require('../../image/mine/icon_arrow_right.png')} style={styles.litleImage}/>
+                        <Image source={require('./img/icon_arrow_right.png')} style={styles.litleImage}/>
                        </View>
                      </View>
                  </TouchableHighlight>
