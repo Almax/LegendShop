@@ -5,35 +5,20 @@ import React, {
   StyleSheet,
   Platform,
   Image,
+  InteractionManager,
   Text,
   Dimensions,
 } from 'react-native';
 
-import DataRepository from './common/DataRepository';
 import Animated from 'Animated';
 import Main from './MainScreen';
 
 //设置本地存储
-let repository = new DataRepository();
 const WINDOW_WIDTH = Platform.OS==='ios'?Dimensions.get('window').width:Dimensions.get('screen').width;
 
 //启动页，设置路由
 export default class Splash extends React.Component {
 
-  //更换封面图片
-   fetchData() {
-    repository.getCover()
-      .then((result) => {
-        if (result){
-          this.setState({cover: result});
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .done();
-    repository.updateCover();
-  }
    //定义首页图片获取的state
   constructor(props){
         super(props);
@@ -56,14 +41,13 @@ export default class Splash extends React.Component {
     ).start();
 
     let {navigator}=this.props;
-    if(navigator){
-      setTimeout(() => {
-          navigator.replace({
-          name: '首页',
-          component: Main,
-          });
-        }, 3000);
-    }
+
+      InteractionManager.runAfterInteractions(() => {
+            navigator.replace({
+            name: '首页',
+            component: Main,
+            });
+      });
   }
 
   render() {

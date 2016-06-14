@@ -14,7 +14,7 @@ import React, {
 
 import TopBar from './home/TopBar';
 import Swiper from 'react-native-swiper';
-import MenuButton from './common/MenuButton';
+import MenuButton from './component/MenuButton';
 import Recommend from './home/Recommend';
 import BusinessActive from './home/BusinessActive';
 import BusinessNew from './home/BusinessNew';
@@ -46,27 +46,23 @@ export default class HomePage extends Component {
     }
     _onMenuClick(title:string) {
        let navigator = this.props.navigator;
-       if(navigator) {
-           navigator.push({
+        navigator.push({
                name: title,
                component: ProductList,
                params: {
                     title:title,
                 }
-           })
-       }
+        })
     }
     _onItemClick(title:string){
       let navigator = this.props.navigator;
-      if(navigator) {
-          navigator.push({
+        navigator.push({
               name: title,
               component: ProductDetail,
               params: {
                    title:title,
                }
-          })
-      }
+       })
     }
     _onRefresh() {
         this.setState({isRefreshing: true});

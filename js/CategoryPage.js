@@ -5,6 +5,7 @@ import React, {
     View,
     Text,
     Image,
+    InteractionManager,
     TouchableOpacity,
     PropTypes,
     StyleSheet,
@@ -13,7 +14,7 @@ import React, {
     Platform,
 } from 'react-native';
 
-import ExpandTab from './common/ExpandTab';
+import ExpandTab from './component/ExpandTab';
 import ProductDetail from './product/ProductDetail';
 const CATEGORY_URL='http://react.legendshop.cn/category';//分类接口q
 
@@ -28,15 +29,13 @@ export default class CategoryPage extends React.Component {
     }
     _onClick(title:string) {
         let navigator = this.props.navigator;
-        if(navigator) {
-            navigator.push({
+        navigator.push({
                 name: title,
                 component: ProductDetail,
                 params: {
                      title:title,
                  }
-            })
-        }
+        })
     }
     _fetchData(){
       fetch(CATEGORY_URL)
@@ -48,9 +47,8 @@ export default class CategoryPage extends React.Component {
         });
       })
       .then((responseData) => {
-
-        console.log('原始数据',JSON.stringify(responseData));
-
+        console.log('分类数据返回－>',JSON.stringify(responseData));
+        //这里需要对返回的数据进行判断状态，然后进入state刷新
         this.setState({
           load: true,
           dataSource: responseData,
@@ -61,7 +59,9 @@ export default class CategoryPage extends React.Component {
     //从网络获取数据
     componentDidMount() {
       console.log('tag','componentDidMount');
-      this._fetchData();
+      InteractionManager.runAfterInteractions(() => {
+        this._fetchData();
+      });
     }
     render() {
         return (

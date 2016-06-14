@@ -8,7 +8,7 @@ import React, {
     View
 } from 'react-native';
 
-import TabNavigator from 'react-native-tab-navigator';
+import TabNavigator from './navigator/TabNavigator';
 import HomePage from './HomePage';
 import CategoryPage from './CategoryPage';
 import CartPage from './CartPage';

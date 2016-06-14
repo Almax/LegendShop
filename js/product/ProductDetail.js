@@ -8,12 +8,13 @@ import React,{
   Text,
   ScrollView,
   TouchableHighlight,
+  InteractionManager,
   ActivityIndicatorIOS,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-import Back from '../common/Back';
+import Back from '../component/Back';
 import Swiper from 'react-native-swiper';
 import ScrollTabPage from './ScrollTabPage';
 import OrderCommit from '../order/OrderCommit';
@@ -34,46 +35,43 @@ export default class ProductDetail extends React.Component{
   }
   //根据传递参数获取详情数据
   _fetchData(){
-    fetch(PRODUCT_DETAIL_URL+'694')
-    .then((response) => response.json())
-    .catch((error) => {
-      this.setState({
-        loadState:false,
-        dataSource:null,
-      });
-    })
-    .then((responseData) => {
-      console.log('原始数据',JSON.stringify(responseData));
-
-      setTimeout(() => {
+      fetch(PRODUCT_DETAIL_URL+'694')
+      .then((response) => response.json())
+      .catch((error) => {
         this.setState({
-          loadState: true,
-          dataSource: responseData,
+          loadState:false,
+          dataSource:null,
         });
-      },1000);
-
-    })
-    .done();
+      })
+      .then((responseData) => {
+        console.log('详情数据返回－>',JSON.stringify(responseData));
+        //这里需要对返回的数据进行判断状态，然后进入state刷新
+          this.setState({
+            loadState: true,
+            dataSource: responseData,
+          });
+      })
+      .done();
   }
   //从网络获取数据
   componentDidMount() {
     console.log('tag','componentDidMount');
-    this._fetchData();
+    InteractionManager.runAfterInteractions(() => {
+      this._fetchData();
+    });
   }
   _onClick() {
       this.props.navigator.pop();
   }
   _onPayClick(){
     let navigator = this.props.navigator;
-    if(navigator) {
-        navigator.push({
+    navigator.push({
             name: '订单填写',
               component: OrderCommit,
             params: {
                  title:'订单填写',
              }
-        })
-    }
+    })
   }
   _onCartClick(){
 

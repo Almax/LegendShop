@@ -13,7 +13,7 @@ import React,{
   View,
 } from 'react-native';
 
-import Back from '../common/Back';
+import Back from '../component/Back';
 import OrderProductCell from './OrderProductCell';
 
 //购物车测试数据

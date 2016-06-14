@@ -12,6 +12,7 @@ import React, {
 
 //该组件定义上面icon底部文字并带有右上角冒泡的基础组件
 //验证参数类型，定义该组件默认的状态和行为
+
 export default class MenuButton extends React.Component {
 
     static propTypes = {

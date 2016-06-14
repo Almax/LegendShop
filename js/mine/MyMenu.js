@@ -11,7 +11,7 @@ import React, {
   StyleSheet,
 } from 'react-native';
 
-import MenuButton from '../common/MenuButton';
+import MenuButton from '../component/MenuButton';
 
 const ITEMS = [[{
   img : require('./img/icon_mine_order_1.png'),

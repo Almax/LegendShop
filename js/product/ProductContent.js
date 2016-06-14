@@ -12,7 +12,7 @@ import React,{
   View,
 } from 'react-native';
 
-import Back from '../common/Back';
+import Back from '../component/Back';
 import Swiper from 'react-native-swiper';
 import ScrollTabPage from './ScrollTabPage';
 import OrderCommit from '../order/OrderCommit';
