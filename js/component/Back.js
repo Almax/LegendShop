@@ -31,11 +31,13 @@ export default class Back extends React.Component {
             <View style={styles.container}>
                 <TouchableOpacity activeOpacity={0.7} onPress={this._onClick}>
                     <View >
-                      <Image source={require('../image/ic_arrow_back_black_24dp.png')} style={styles.img}/>
+                      <Image source={require('../image/ic_arrow_back_black_@2x.png')} style={styles.img}/>
                     </View>
                 </TouchableOpacity>
-                <Text style={styles.text}>
+                <Text style={[styles.text,{marginRight:20}]}>
                       {title}
+                </Text>
+                <Text style={styles.text}>
                 </Text>
             </View>
             <View style={styles.separate}/>
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
   container: {
       flexDirection: 'row',   // 水平排布
       paddingLeft: 5,
+      justifyContent:'space-between',
       paddingRight: 5,
       paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
       height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
@@ -66,6 +69,5 @@ const styles = StyleSheet.create({
   },
   text:{
     fontSize:15,
-    marginLeft:135,
   },
 });

@@ -9,6 +9,7 @@ import React, {
     Alert,
     RefreshControl,
     TouchableOpacity,
+    InteractionManager,
     TouchableHighlight,
 } from 'react-native';
 
@@ -22,6 +23,8 @@ import ThemePavilion from './home/ThemePavilion';
 
 import ProductList from './product/ProductList'
 import ProductDetail from './product/ProductDetail';
+
+import Login from './login/Login';
 
 const BANNER_IMGS = [
     require('./image/img_home_banner1_@2x.jpg'),
@@ -44,6 +47,29 @@ export default class HomePage extends Component {
         };
         this._onRefresh=this._onRefresh.bind(this);
     }
+
+    _onLoginClick(title:string) {
+       let navigator = this.props.navigator;
+        navigator.push({
+               name: title,
+               component: Login,
+               params: {
+                    title:title,
+                }
+        })
+    }
+
+    _onSearchClick(title:string) {
+       let navigator = this.props.navigator;
+        navigator.push({
+               name: title,
+               component: Login,
+               params: {
+                    title:title,
+                }
+        })
+    }
+
     _onMenuClick(title:string) {
        let navigator = this.props.navigator;
         navigator.push({
@@ -72,12 +98,12 @@ export default class HomePage extends Component {
           this.setState({
             isRefreshing: false,
           });
-        }, 3000);
+        }, 1500 );
     }
     render() {
         return (
             <View style={{flex: 1}}>
-              <TopBar />
+              <TopBar  _onSearchClick={this._onSearchClick.bind(this)}  _onLoginClick={this._onLoginClick.bind(this)}/>
 	            <ScrollView style={styles.container1}
                           refreshControl={
                             <RefreshControl

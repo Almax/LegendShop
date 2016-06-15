@@ -6,11 +6,25 @@ import React, {
     TextInput,
     Text,
     View,
+    TouchableOpacity,
     Platform,
     StyleSheet
 } from 'react-native';
 
-export default class Header extends Component {
+export default class TopBar extends Component {
+
+    _onLoginClick(title:string){
+        if (this.props._onLoginClick) {
+            this.props._onLoginClick(title);
+        }
+    }
+
+    _onSearchClick(title: string) {
+        if (this.props._onSearchClick) {
+             this.props._onSearchClick(title);
+        }
+    }
+
     render() {
         return (
           <View>
@@ -19,11 +33,16 @@ export default class Header extends Component {
                 <View style={styles.searchBox}>
                     <Image source={require('../image/lib_story_img_search_bt_@2x.png')} style={styles.searchIcon}/>
                     <TextInput
+                        onPress={()=>this._onSearchClick('搜索')}
                         keyboardType='web-search'
                         placeholder='搜索...'
                         style={styles.inputText}/>
                 </View>
-                <Text style={styles.loginText}>登陆</Text>
+                <TouchableOpacity onPress={()=>this._onLoginClick('登录')} activeOpacity={0.7}>
+                  <Text style={styles.loginText}>
+                    登陆
+                  </Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.separate}/>
           </View>
