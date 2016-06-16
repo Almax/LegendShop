@@ -16,23 +16,25 @@ import Forget from './Forget';
 import Back from '../component/Back';
 import Register from './Register';
 
-import {WINDOW_WIDTH} from '../common/constant';
-
-import Storage from '../common/Storage';
-
-import {ACCOUNT_SAVE_KEY} from '../common/constant';
-
+import Constant from '../common/Constant';
+import Utils from '../common/Utils';
 
 export default class Login extends React.Component {
 
    //定义首页图片获取的state
   constructor(props){
-
         super(props);
-
         this.state = {
-
+          acountRemember:'0',
         };
+  }
+  componentDidMount() {
+    Utils.storageGetItem(Constant.storeKeys.ACCOUNT_REMEMBER_KEY)
+        .then((value)=> {
+          this.setState({
+                  acountRemember:value,
+          });
+        });
   }
 
   _onForgetClick(title:string){
@@ -46,13 +48,23 @@ export default class Login extends React.Component {
       })
   }
 
-
   _onClick() {
+
     this.props.navigator.pop();
+
   }
 
   _onLogin(){
     this.props.navigator.pop();
+  }
+
+  _onSetRemberAccount(){
+
+      let value = this.state.acountRemember==='0'?'1':'0';
+      Utils.storageSetItem(Constant.storeKeys.ACCOUNT_REMEMBER_KEY,value);
+      this.setState({
+              acountRemember:value,
+      });
   }
 
   _onRegister(title:string){
@@ -68,9 +80,14 @@ export default class Login extends React.Component {
 
   render() {
 
+    let img;
+    if(this.state.acountRemember ==='0')
+         img=require('./img/check_@2x.png');
+    else
+         img=require('./img/checked_@2x.png');
+
     return (
       <View style={{flex:1}}>
-
             <View style={styles.container1}>
                 <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onClick()}>
                     <View >
@@ -111,12 +128,13 @@ export default class Login extends React.Component {
             </View>
 
             <View style={styles.container2}>
-              <View style={{flexDirection:'row',alignItems:'center',marginLeft:10}}>
-                <Image source={require('./img/check_@2x.png')} style={styles.icon1}/>
-                <Text style={{fontSize:10,color:'#666666'}}> 记住账号 </Text>
-              </View>
-
-              <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onForgetClick('找回密码  ')}>
+             <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onSetRemberAccount()}>
+                <View style={{flexDirection:'row',alignItems:'center',marginLeft:10}}>
+                  <Image source={img} style={styles.icon1}/>
+                  <Text style={{fontSize:10,color:'#666666'}}> 记住账号 </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onForgetClick('密码找回')}>
                   <Text style={{color:'#0067C4',fontSize:10,marginRight:10,}}> 忘记密码？</Text>
               </TouchableOpacity>
             </View>
@@ -181,7 +199,7 @@ let styles = StyleSheet.create({
 
   separate1:{
     height:0.5,
-    width:WINDOW_WIDTH/3,
+    width:Constant.window.width/3,
     backgroundColor:'#DFE0E3',
   },
 

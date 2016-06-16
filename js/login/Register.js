@@ -12,7 +12,7 @@ import React, {
   Text,
 } from 'react-native';
 
-import {WINDOW_WIDTH} from '../common/constant';
+import Util from '../common/Utils';
 
 export default class Register extends React.Component {
 
@@ -38,6 +38,26 @@ export default class Register extends React.Component {
     //            title:title,
     //        }
     //   })
+  }
+
+  _onGetSmsCode(){
+
+    Util.httpGet(URL, (response) => {
+            console.log('_onGetSmsCode success: ' + JSON.stringify(response));
+          }, (error) => {
+              console.log('_onGetSmsCode error: ' + error);
+          })
+
+  }
+
+  _onRegister(){
+
+    Util.httpPost(URL, (response) => {
+            console.log('_onGetSmsCode success: ' + JSON.stringify(response));
+          }, (error) => {
+              console.log('_onGetSmsCode error: ' + error);
+          })
+
   }
 
   render() {

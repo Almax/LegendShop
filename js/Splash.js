@@ -36,7 +36,7 @@ export default class Splash extends React.Component {
       this.state.bounceValue,
       {
         toValue: 1.2,
-        duration: 3000,
+        duration: 1000, 
       }
     ).start();
 

@@ -13,7 +13,7 @@ import React, {
 } from 'react-native';
 
 
-import {WINDOW_WIDTH} from '../common/constant';
+import Constant from '../common/Constant';
 
 import Back from '../component/Back';
 
@@ -27,7 +27,9 @@ export default class Forget extends React.Component {
   }
 
   _onClick() {
+
     this.props.navigator.pop();
+
   }
 
 
@@ -83,13 +85,6 @@ export default class Forget extends React.Component {
                 </View>
             </View>
 
-            <View style={{flexDirection:'row',justifyContent:'center',margin:20}}>
-                <Text style={{color:'#666666',fontSize:10}}>点击注册，表示您同意LegendShop</Text>
-                <TouchableOpacity activeOpacity={0.7}>
-                  <Text style={{color:'#0067C4',fontSize:10}}>《服务协议》</Text>
-                </TouchableOpacity>
-            </View>
-
             <TouchableOpacity activeOpacity={0.7}>
                 <Text style={styles.okText}>确定</Text>
             </TouchableOpacity>
@@ -135,6 +130,7 @@ let styles = StyleSheet.create({
       height:35,
       marginLeft:40,
       marginRight:40,
+      marginTop:15,
       borderRadius:5,
       textAlign:'center',
       paddingTop:12,
