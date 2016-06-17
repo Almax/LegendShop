@@ -5,7 +5,7 @@ import React, {
   Navigator,
 } from 'react-native';
 
-import Splash from './js/Splash';
+import Splash from './app/Splash';
 //定义默认路由导航器，以及路由切换页面时的传参方式
  export default class LegendShop extends React.Component {
   render() {
