@@ -1,17 +1,11 @@
 'use strict';
 
-import Md5 from './Md5';
+import Md5 from 'md5';
 
 import { AsyncStorage } from 'react-native';
 
 let Util = {
-    /*
-     * fetch简单封装
-     * url: 请求的URL
-     * successCallback: 请求成功回调
-     * failCallback: 请求失败回调
-     *
-     * */
+    //http的get请求
     httpGet: (url, successCallback, failCallback) => {
         fetch(url)
             .then((response) => response.text())
@@ -20,25 +14,51 @@ let Util = {
             })
             .catch((err) => {
                 failCallback(err);
-            });
+            }).done();
     },
-    //http的post请求,参数传递body是标准的json对象
-    httpPost:(url, body, successCallback, failCallback)=>{
+    //http的提交表单
+    httpPostForm:(url,data, successCallback, failCallback)=>{
           fetch(url, {
+            method: 'POST',
+            headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/x-www-form-urlencoded'
+           },
+           body:data+''
+          })
+            .then((response) => response.text())
+            .then((responseText) => {
+                //根据返回状态进行回调
+                let result=JSON.parse(responseText);
+                if(result.status===1){
+                  console.log('success: ' + responseText);
+                  successCallback(result.result);
+                }else{
+                  console.log('fail: ' + responseText);
+                  failCallback(result.msg);
+                }
+            })
+            .catch((err) => {
+                failCallback(err);
+            }).done();
+    },
+    //http的提交json
+    httpPostJson:(url, data,successCallback, failCallback)=>{
+          fetch(url,{
               method: 'POST',
               headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
               },
-              body: JSON.stringify(body)
-          })
+              body: JSON.stringify(data)
+            })
             .then((response) => response.text())
             .then((responseText) => {
                 successCallback(JSON.parse(responseText));
             })
             .catch((err) => {
                 failCallback(err);
-            });
+            }).done();
 
     },
     //本地存储，以key-value的方式
@@ -57,13 +77,20 @@ let Util = {
                 return null;
             })
     },
+    //更新key所对应的value
+    storageUpdateItem: (key, value) => {
+        return AsyncStorage.getItem(key).then((item) => {
+          value =  Object.assign({}, JSON.parse(item), value);
+          return AsyncStorage.setItem(key, JSON.stringify(value));
+        });
+    },
     //清除当前key的value
     storageClearItem: (key) => {
         return AsyncStorage.removeItem(key);
     },
     //md5加密
-    md5Str:(value)=>{
-      return Md5.hex_md5(value);
+    md5:(value)=>{
+      return Md5(value);
     },
 
 }

@@ -8,6 +8,7 @@ import React, {
   InteractionManager,
   Platform,
   TouchableOpacity,
+  Alert,
   ScrollView,
   Text,
 } from 'react-native';
@@ -15,25 +16,39 @@ import React, {
 import Forget from './Forget';
 import Back from '../component/Back';
 import Register from './Register';
-
 import Constant from '../common/Constant';
 import Utils from '../common/Utils';
 
+import Main from '../MainScreen';
+
+import DeviceInfo  from 'react-native-device-info';
+
 export default class Login extends React.Component {
 
-   //定义首页图片获取的state
   constructor(props){
         super(props);
         this.state = {
-          acountRemember:'0',
+          accountRemember:'0',
+          deviceId: DeviceInfo.getUniqueID(),
+          verId:'1.0',
+          platform:'IOS',
+          loginName:'',
+          password:''
         };
   }
   componentDidMount() {
-    Utils.storageGetItem(Constant.storeKeys.ACCOUNT_REMEMBER_KEY)
-        .then((value)=> {
-          this.setState({
-                  acountRemember:value,
-          });
+
+    Utils.storageGetItem(Constant.storeKeys.LOGIN_INFO_KEY)
+        .then((value) => {
+            let name,remember;
+            if(value){
+               name=value.loginName?value.loginName:'';
+               remember=value.accountRemember?value.accountRemember:'0'
+            }
+            this.setState({
+                loginName: name,
+                accountRemember:remember,
+            });
         });
   }
 
@@ -55,15 +70,41 @@ export default class Login extends React.Component {
   }
 
   _onLogin(){
-    this.props.navigator.pop();
+
+   let data='loginName='+this.state.loginName+'&'+'password='+this.state.password+
+   '&'+'deviceId='+this.state.deviceId+'&'+'verId='+this.state.verId+'&'+'platform='+this.state.platform;
+
+   console.log('tag','登录参数＝'+data);
+
+    Utils.httpPostForm(Constant.httpKeys.HOST+Constant.httpKeys.LOGIN_API_KEY,data,
+        (response) => {
+                console.log('_onLogin success: ' + JSON.stringify(response));
+
+                //账号密码添加进登录信息
+                response.loginName=this.state.loginName;
+                response.password=this.state.password;
+
+                Utils.storageSetItem(Constant.storeKeys.LOGIN_INFO_KEY,response);
+
+                let navigator = this.props.navigator;
+                  navigator.resetTo({
+                      name: '首页',
+                      component: Main,
+                  })
+
+          }, (error) => {
+                console.log('_onLogin error: ' + error);
+                    Alert.alert('登录失败',error)
+          });
+
   }
 
   _onSetRemberAccount(){
 
-      let value = this.state.acountRemember==='0'?'1':'0';
-      Utils.storageSetItem(Constant.storeKeys.ACCOUNT_REMEMBER_KEY,value);
+      let value = this.state.accountRemember==='0'?'1':'0';
+      Utils.storageUpdateItem(Constant.storeKeys.LOGIN_INFO_KEY,{'accountRemember':value});
       this.setState({
-              acountRemember:value,
+              accountRemember:value,
       });
   }
 
@@ -80,12 +121,14 @@ export default class Login extends React.Component {
 
   render() {
 
-    let img;
-    if(this.state.acountRemember ==='0')
+    let img,name;
+    if(this.state.accountRemember ==='0'){
          img=require('./img/check_@2x.png');
-    else
+         name='';
+    }else{
          img=require('./img/checked_@2x.png');
-
+         name=this.state.loginName;
+    }
     return (
       <View style={{flex:1}}>
             <View style={styles.container1}>
@@ -113,7 +156,9 @@ export default class Login extends React.Component {
                 <View style={styles.inputBox}>
                     <TextInput
                         clearButtonMode='while-editing'
+                        value={name}
                         placeholder='邮箱／手机／用户名'
+                        onChangeText={(text) => this.setState({loginName: text})}
                         style={styles.inputText}/>
                 </View>
             </View>
@@ -123,6 +168,7 @@ export default class Login extends React.Component {
                     <TextInput
                         clearButtonMode='while-editing'
                         placeholder='请输入密码'
+                        onChangeText={(text) => this.setState({password: text})}
                         style={styles.inputText}/>
                 </View>
             </View>
@@ -153,16 +199,16 @@ export default class Login extends React.Component {
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-around',
                 padding:10}}>
 
-              <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onLogin()}>
+              <TouchableOpacity activeOpacity={0.7}>
                   <Image style={{marginLeft:10,}} source={require('./img/qq_@2x.png')}/>
               </TouchableOpacity>
 
-              <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onLogin()}>
-                <Image source={require('./img/weixin_@2x.png')}/>
+              <TouchableOpacity activeOpacity={0.7}>
+                  <Image source={require('./img/weixin_@2x.png')}/>
               </TouchableOpacity>
 
-              <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onLogin()}>
-                <Image style={{marginRight:10,}} source={require('./img/weibo_@2x.png')}/>
+              <TouchableOpacity activeOpacity={0.7}>
+                  <Image style={{marginRight:10,}} source={require('./img/weibo_@2x.png')}/>
               </TouchableOpacity>
 
             </View>

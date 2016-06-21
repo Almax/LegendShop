@@ -20,12 +20,30 @@ let colors = {
 
 let storeKeys = {
     //存储登录界面是否记得账号，0是不记录，1是记录
-    ACCOUNT_REMEMBER_KEY: 'ACCOUNT_REMEMBER_KEY',
+    LOGIN_INFO_KEY:'LOGIN_INFO_KEY',
 }
 
+//接口请求前缀
+let httpKeys = {
+    //主地址
+    HOST: 'http://react.legendshop.cn',
+    // HOST: 'http://legendshop.imwork.net:8801/legendshop_app',
+    //注册使用短信验证码
+    REGISTER_SMS_API_KEY: '/sendRegSMSCode?',
+    //忘记密码发送短信验证码
+    FORGET_SMS_API_KEY: '/sendSMSCode?',
+    //登录
+    LOGIN_API_KEY: '/login?',
+    //注册
+    REGISTER_API_KEY: '/userReg?',
+    //找回密码
+    FORGET_PWD_API_KEY: '/forgetPwd?',
+
+}
 
 export default {
     window: window,
     colors: colors,
     storeKeys: storeKeys,
+    httpKeys: httpKeys,
 }

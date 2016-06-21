@@ -13,16 +13,20 @@ import React, {
 } from 'react-native';
 
 
-import Constant from '../common/Constant';
-
 import Back from '../component/Back';
+import Login from './Login';
+
+import Utils from '../common/Utils';
+import Constant from '../common/Constant';
 
 export default class Forget extends React.Component {
 
   constructor(props){
         super(props);
         this.state = {
-
+          newPwd: '',
+          mobile:'',
+          code:'',
         };
   }
 
@@ -32,6 +36,44 @@ export default class Forget extends React.Component {
 
   }
 
+  _findPassword(){
+
+    let data='newPwd='+this.state.newPwd+'&'+'mobile='+this.state.mobile+'&'+'code='+this.state.code;
+
+    console.log('tag','data='+data);
+
+    Utils.httpPostForm(Constant.httpKeys.HOST+Constant.httpKeys.FORGET_PWD_API_KEY,data,
+      (response) => {
+            console.log('_findPassword success: ' + JSON.stringify(response));
+            //更新登录信息
+            Utils.storageUpdateItem(Constant.storeKeys.LOGIN_INFO_KEY,{'password':this.state.newPwd});
+
+            let navigator = this.props.navigator;
+              navigator.push({
+                  name: '登录',
+                  component: Login,
+                  params: {
+                       title:'登录',
+                   }
+              })
+          }, (error) => {
+              console.log('_findPassword error: ' + error);
+          });
+  }
+
+  _onGetSmsCode(){
+
+    let data='phone='+this.state.mobile;
+
+    console.log('tag','找回密码发送短信验证参数＝'+data);
+
+    Util.httpPostForm(Constant.httpKeys.HOST+Constant.httpKeys.FORGET_SMS_API_KEY,data,
+      (response) => {
+            console.log('_onGetSmsCode success: ' + JSON.stringify(response));
+          }, (error) => {
+              console.log('_onGetSmsCode error: ' + error);
+          });
+  }
 
   render() {
     return (
@@ -48,6 +90,7 @@ export default class Forget extends React.Component {
                 <View style={styles.inputBox}>
                     <TextInput
                         clearButtonMode='while-editing'
+                        onChangeText={(text) => this.setState({mobile: text})}
                         placeholder='请输入手机号码'
                         style={styles.inputText}/>
                 </View>
@@ -60,6 +103,7 @@ export default class Forget extends React.Component {
                 <View style={styles.inputBox}>
                     <TextInput
                         clearButtonMode='while-editing'
+                        onChangeText={(text) => this.setState({code: text})}
                         placeholder='输入手机验证码'
                         style={styles.inputText}/>
                 </View>
@@ -70,6 +114,7 @@ export default class Forget extends React.Component {
                 <View style={styles.inputBox}>
                     <TextInput
                         clearButtonMode='while-editing'
+                        onChangeText={(text) => this.setState({newPwd: text})}
                         placeholder='输入您的新密码'
                         style={styles.inputText}/>
                 </View>
@@ -85,7 +130,7 @@ export default class Forget extends React.Component {
                 </View>
             </View>
 
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity activeOpacity={0.7} onPress={()=>this._findPassword()}>
                 <Text style={styles.okText}>确定</Text>
             </TouchableOpacity>
 

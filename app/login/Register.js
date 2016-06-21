@@ -13,6 +13,8 @@ import React, {
 } from 'react-native';
 
 import Util from '../common/Utils';
+import Constant from '../common/Constant';
+import Login from './Login';
 
 export default class Register extends React.Component {
 
@@ -20,7 +22,9 @@ export default class Register extends React.Component {
   constructor(props){
         super(props);
         this.state = {
-
+          password: '',
+          mobile:'',
+          mobileCode:'',
         };
   }
 
@@ -29,35 +33,34 @@ export default class Register extends React.Component {
   }
 
   _onLogin(title:string){
-
-    // let navigator = this.props.navigator;
-    //   navigator.push({
-    //       name: title,
-    //       component: Login,
-    //       params: {
-    //            title:title,
-    //        }
-    //   })
+    this.props.navigator.pop();
   }
 
   _onGetSmsCode(){
 
-    Util.httpGet(URL, (response) => {
+    let data='phone='+'13066831968';
+
+    console.log('tag','注册发送短信验证参数＝'+data);
+
+    Util.httpPostForm(Constant.httpKeys.HOST+Constant.httpKeys.REGISTER_SMS_API_KEY,data,
+      (response) => {
             console.log('_onGetSmsCode success: ' + JSON.stringify(response));
           }, (error) => {
               console.log('_onGetSmsCode error: ' + error);
-          })
-
+          });
   }
 
   _onRegister(){
 
-    Util.httpPost(URL, (response) => {
-            console.log('_onGetSmsCode success: ' + JSON.stringify(response));
-          }, (error) => {
-              console.log('_onGetSmsCode error: ' + error);
-          })
+        let data='nickName='+this.state.mobile+'&'+'password='+this.state.password+'&'
+        +'mobile='+this.state.mobile+'&'+'mobileCode='+'1234';
 
+        Util.httpPostForm(Constant.httpKeys.HOST+Constant.httpKeys.REGISTER_API_KEY,data,
+          (response) => {
+                console.log('_onRegister success: ' + JSON.stringify(response));
+              }, (error) => {
+                  console.log('_onRegister error: ' + error);
+              });
   }
 
   render() {
@@ -74,7 +77,7 @@ export default class Register extends React.Component {
                 <Text style={styles.text}>
                       {this.props.title}
                 </Text>
-                <TouchableOpacity activeOpacity={0.7}>
+                <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onLogin()}>
                   <Text style={[styles.text,{fontSize:12,marginRight:10,color:'#6A6666'}]}>
                       登录
                   </Text>
@@ -90,10 +93,11 @@ export default class Register extends React.Component {
                 <View style={styles.inputBox}>
                     <TextInput
                         clearButtonMode='while-editing'
+                        onChangeText={(text) => this.setState({mobile: text})}
                         placeholder='请输入手机号码'
                         style={styles.inputText}/>
                 </View>
-                <TouchableOpacity activeOpacity={0.7}>
+                <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onGetSmsCode()}>
                     <Text style={styles.codeText}>获取验证码</Text>
                 </TouchableOpacity>
             </View>
@@ -102,6 +106,7 @@ export default class Register extends React.Component {
                 <View style={styles.inputBox}>
                     <TextInput
                         clearButtonMode='while-editing'
+                        onChangeText={(text) => this.setState({mobileCode: text})}
                         placeholder='手机验证码'
                         style={styles.inputText}/>
                 </View>
@@ -112,6 +117,7 @@ export default class Register extends React.Component {
                 <View style={styles.inputBox}>
                     <TextInput
                         clearButtonMode='while-editing'
+                        onChangeText={(text) => this.setState({password: text})}
                         placeholder='输入密码'
                         style={styles.inputText}/>
                 </View>
@@ -124,7 +130,7 @@ export default class Register extends React.Component {
                 </TouchableOpacity>
             </View>
 
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onRegister()}>
                 <Text style={styles.okText}>注册</Text>
             </TouchableOpacity>
 

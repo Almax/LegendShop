@@ -11,7 +11,30 @@ import React, {
     StyleSheet
 } from 'react-native';
 
+import Utils from '../common/Utils';
+import Constant from '../common/Constant';
+
 export default class TopBar extends Component {
+
+  constructor(props){
+        super(props);
+        this.state = {
+            login:'登录',
+        };
+  }
+
+  componentDidMount() {
+    Utils.storageGetItem(Constant.storeKeys.LOGIN_INFO_KEY)
+        .then((value)=> {
+          if(value){
+          console.log('tag','登录信息获取＝'+JSON.stringify(value));
+          if(value.accessToken)
+            this.setState({
+                  login:'已登录',
+            });
+          }
+        });
+  }
 
     _onLoginClick(title:string){
         if (this.props._onLoginClick) {
@@ -40,7 +63,7 @@ export default class TopBar extends Component {
                 </View>
                 <TouchableOpacity onPress={()=>this._onLoginClick('登录')} activeOpacity={0.7}>
                   <Text style={styles.loginText}>
-                    登陆
+                    {this.state.login}
                   </Text>
                 </TouchableOpacity>
             </View>
