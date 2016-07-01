@@ -131,14 +131,14 @@ const styles = StyleSheet.create({
     text3:{
       marginLeft:3,
       color:'#969696',
-      fontSize:6
+      fontSize:8
     },
     title1:{
       color:'#323232',
-      fontSize:10
+      fontSize:12
     },
     title2:{
       color:'#1A92E0',
-      fontSize:8
+      fontSize:10
     }
 });

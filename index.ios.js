@@ -5,6 +5,10 @@ import React, {
   Navigator,
 } from 'react-native';
 
+//关闭warning
+console.disableYellowBox = true;
+console.warn('YellowBox is disabled.');
+
 import Splash from './app/Splash';
 //定义默认路由导航器，以及路由切换页面时的传参方式
  export default class LegendShop extends React.Component {

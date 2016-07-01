@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         marginBottom: 3
     },
     showText: {
-        fontSize: 10,
+        fontSize: 12,
         color:'#6E6E6E',
     }
 });

@@ -11,13 +11,14 @@ import React,{
   View,
 } from 'react-native';
 
+import Constant from '../common/Constant';
+
 export default class ProductCell extends React.Component{
 
   render() {
-    let img = this.props.product.img;
-    let title = this.props.product.title;
-    let price1 = this.props.product.price1;
-    let price2 = this.props.product.price2;
+    let img = Constant.httpKeys.IMAGE_API_HOST+this.props.product.pic;
+    let title = this.props.product.name;
+    let price = '￥'+this.props.product.price;
 
     let TouchableElement = TouchableHighlight;
     if (Platform.OS === 'android') {
@@ -30,13 +31,20 @@ export default class ProductCell extends React.Component{
           onHideUnderlay={this.props.onUnhighlight}>
           <View style={styles.row}>
             <Image
-              source={img}
+              resizeMode={'cover'}
+              source={{uri:img}}
               style={styles.cellImage}
             />
-            <View>
-              <Text style={styles.text1}>{title}</Text>
-              <Text style={styles.text2}>{price1}</Text>
-              <Text style={styles.text3}>{price2}</Text>
+            <View >
+              <Text style={styles.text1} numberOfLines={2}>{title}</Text>
+              <View style={{flexDirection:'row',marginTop:5}}>
+                <Text style={styles.text2}>{price}</Text>
+                <Text style={styles.text3}>{price}</Text>
+              </View>
+              <View style={{flexDirection:'row',marginTop:5}}>
+                <Text style={[styles.text2,{color:Constant.colors.lightBlackColor}]}>好评％9</Text>
+                <Text style={styles.text3}>12593人浏览</Text>
+              </View>
             </View>
           </View>
         </TouchableElement>
@@ -48,6 +56,7 @@ let styles = StyleSheet.create({
   row: {
     alignItems: 'center',
     backgroundColor: 'white',
+    flex:1,
     flexDirection: 'row',
     padding: 8,
   },
@@ -58,16 +67,16 @@ let styles = StyleSheet.create({
     width: 75,
   },
   text1:{
-    fontSize:10,
+    width:200,
+    fontSize:14,
   },
   text2:{
     fontSize:12,
-    marginTop:15,
-    color:'#FF0000',
+    color:Constant.colors.redColor,
   },
   text3:{
-    fontSize:10,
-    marginTop:5,
-    color:'#A3A3A3',
+    fontSize:12,
+    marginLeft:10,
+    color:Constant.colors.lightBlackColor,
   },
 });

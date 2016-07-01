@@ -12,7 +12,7 @@ import React,{
 
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
-export default class ScrollTabPage extends React.Component{
+export default class DetailTabPage extends React.Component{
 
   render() {
       return (

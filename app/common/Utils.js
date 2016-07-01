@@ -5,18 +5,26 @@ import Md5 from 'md5';
 import { AsyncStorage } from 'react-native';
 
 let Util = {
-    //http的get请求
+    //http的get请求，包括log日志打印以及成功及失败的回调
     httpGet: (url, successCallback, failCallback) => {
         fetch(url)
             .then((response) => response.text())
             .then((responseText) => {
-                successCallback(JSON.parse(responseText));
+              let result=JSON.parse(responseText);
+              if(result.status===1){
+                console.log('success: ' + responseText);
+                successCallback(result.result);
+              }else{
+                console.log('fail: ' + responseText);
+                failCallback(result.msg);
+              }
             })
             .catch((err) => {
+                console.log('err: ' + err);
                 failCallback(err);
             }).done();
     },
-    //http的提交表单
+    //http的提交表单，包括log日志打印以及成功及失败的回调
     httpPostForm:(url,data, successCallback, failCallback)=>{
           fetch(url, {
             method: 'POST',
@@ -39,10 +47,11 @@ let Util = {
                 }
             })
             .catch((err) => {
+                console.log('err: ' + err);
                 failCallback(err);
             }).done();
     },
-    //http的提交json
+    //http的提交json对象，包括log日志打印以及成功及失败的回调
     httpPostJson:(url, data,successCallback, failCallback)=>{
           fetch(url,{
               method: 'POST',
@@ -54,9 +63,17 @@ let Util = {
             })
             .then((response) => response.text())
             .then((responseText) => {
-                successCallback(JSON.parse(responseText));
+              let result=JSON.parse(responseText);
+              if(result.status===1){
+                console.log('success: ' + responseText);
+                successCallback(result.result);
+              }else{
+                console.log('fail: ' + responseText);
+                failCallback(result.msg);
+              }
             })
             .catch((err) => {
+                console.log('err: ' + err);
                 failCallback(err);
             }).done();
 

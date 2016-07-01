@@ -143,12 +143,12 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
   },
   image:{
-    width:13,
-    height:13,
+    width:15,
+    height:15,
   },
   text1:{
     marginLeft:5,
-    fontSize:10,
+    fontSize:12,
     color:'#6C656C',
   },
   text2:{

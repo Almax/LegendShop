@@ -184,13 +184,13 @@ const styles = StyleSheet.create({
       height: 48,
   },
   showText: {
-      fontSize: 10,
+      fontSize: 12,
       color:'#6E6E6E',
   },
   childeText:{
     paddingTop:8,
     paddingBottom:8,
-    fontSize: 10,
+    fontSize: 12,
     color:'#6E6E6E',
   },
   scrollSpinner: {

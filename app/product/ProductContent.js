@@ -14,7 +14,7 @@ import React,{
 
 import Back from '../component/Back';
 import Swiper from 'react-native-swiper';
-import ScrollTabPage from './ScrollTabPage';
+import DetailTabPage from './DetailTabPage';
 import OrderCommit from '../order/OrderCommit';
 
 //详情具体展示页面，这里需要处理四种对应的组件变化状态
@@ -146,7 +146,7 @@ export default class ProductContent extends React.Component{
             </View>
          </View>
 
-        <ScrollTabPage />
+        <DetailTabPage />
 
         <View style={styles.container1}>
            <Text style={styles.text1}>主体</Text>
@@ -155,7 +155,7 @@ export default class ProductContent extends React.Component{
            <Text style={styles.text1}>系统 Windows7</Text>
         </View>
 
-        <ScrollTabPage/>
+        <DetailTabPage/>
 
         <View style={styles.container1}>
            <Text style={[styles.text1,{marginTop:10,marginBottom:10}]}>型号 VW510L\n 山东发送到发送到发送到 </Text>

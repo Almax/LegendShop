@@ -34,7 +34,7 @@ export default class MinePage extends React.Component {
         return (
           <View style={{flex: 1}}>
               <View style={styles.container}>
-                  <Text style={styles.text}>
+                  <Text style={styles.titleText}>
                     我的
                   </Text>
               </View>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
       paddingRight: 5,
       justifyContent:'center',
       paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
-      height: Platform.OS === 'ios' ? 50 : 50,   // 处理iOS状态栏
+      height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
       backgroundColor: 'white',
       alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
   },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     height:105,
     width:WINDOW_WIDTH,
   },
-  text:{
-    fontSize:12,
+  titleText:{
+    fontSize:15,
   },
 });

@@ -8,6 +8,7 @@ import React, {
     InteractionManager,
     TouchableOpacity,
     PropTypes,
+    Alert,
     StyleSheet,
     ScrollView,
     TextInput,
@@ -16,7 +17,11 @@ import React, {
 
 import ExpandTab from './component/ExpandTab';
 import ProductDetail from './product/ProductDetail';
-const CATEGORY_URL='http://react.legendshop.cn/category';//分类接口q
+
+import Constant from './common/Constant';
+import Utils from './common/Utils';
+
+import SearchProduct from './product/SearchProduct';
 
 export default class CategoryPage extends React.Component {
 
@@ -37,30 +42,39 @@ export default class CategoryPage extends React.Component {
                  }
         })
     }
-    _fetchData(){
-      fetch(CATEGORY_URL)
-      .then((response) => response.json())
-      .catch((error) => {
-        this.setState({
-          load:false,
-          dataSource:[],
-        });
-      })
-      .then((responseData) => {
-        console.log('分类数据返回－>',JSON.stringify(responseData));
-        //这里需要对返回的数据进行判断状态，然后进入state刷新
-        this.setState({
-          load: true,
-          dataSource: responseData,
-        });
-      })
-      .done();
+    _onSearchClick(title: string) {
+      let navigator = this.props.navigator;
+       navigator.push({
+              name: title,
+              component: SearchProduct,
+              params: {
+                   title:title,
+               }
+       })
+    }
+    _onFetchCategoryData(){
+      //获取分类数据
+      Utils.httpGet(Constant.httpKeys.HOST+Constant.httpKeys.CATEGOTY_API_KEY,
+          (response) => {
+                  console.log('_onFetchCategoryData success: ' + JSON.stringify(response));
+                  this.setState({
+                    load: true,
+                    dataSource: response,
+                  });
+            }, (error) => {
+                  console.log('_onFetchCategoryData error: ' + error);
+                    this.setState({
+                      load:false,
+                      dataSource:[],
+                    });
+                    Alert.alert('',error)
+            });
     }
     //从网络获取数据
     componentDidMount() {
       console.log('tag','componentDidMount');
       InteractionManager.runAfterInteractions(() => {
-        this._fetchData();
+        this._onFetchCategoryData();
       });
     }
     render() {
@@ -69,10 +83,11 @@ export default class CategoryPage extends React.Component {
             <View style={styles.container}>
                 <View style={styles.searchBox}>
                     <Image source={require('./image/lib_story_img_search_bt_@2x.png')} style={styles.searchIcon}/>
-                    <TextInput
-                        keyboardType='web-search'
-                        placeholder='搜索...'
-                        style={styles.inputText}/>
+                    <Text
+                        onPress={()=>this._onSearchClick('搜索')}
+                        style={styles.inputText}>
+                        搜索...
+                    </Text>
                 </View>
             </View>
             <View style={styles.separate}/>
@@ -88,12 +103,12 @@ const styles = StyleSheet.create({
       paddingLeft: 5,
       paddingRight: 5,
       paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
-      height: Platform.OS === 'ios' ? 50 : 50,   // 处理iOS状态栏
+      height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
       backgroundColor: 'white',
       alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
   },
   searchBox: {
-      height: 23,
+      height: 28,
       flexDirection: 'row',
       flex: 1,  // 类似于android中的layout_weight,设置为1即自动拉伸填充
       borderRadius: 3,  // 设置圆角边
@@ -111,7 +126,7 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
       marginLeft: 6,
-      marginRight: 6,
+      marginRight: 3,
       width: 10,
       height: 10,
       resizeMode: 'stretch'
@@ -122,6 +137,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
       flex: 1,
+      color:Constant.colors.lightColor,
       backgroundColor: 'transparent',
       fontSize: 10
   }

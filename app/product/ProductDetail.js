@@ -16,7 +16,6 @@ import React,{
 
 import Back from '../component/Back';
 import Swiper from 'react-native-swiper';
-import ScrollTabPage from './ScrollTabPage';
 import OrderCommit from '../order/OrderCommit';
 
 const PRODUCT_DETAIL_URL='http://react.legendshop.cn/productDetail?prodId=';

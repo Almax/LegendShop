@@ -63,9 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#A7A7AA',
   },
   img:{
-    marginLeft:5,
-      width:28,
-      height:28,
+      marginLeft:5,
   },
   text:{
     fontSize:15,

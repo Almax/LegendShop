@@ -40,8 +40,8 @@ export default class MainScreen extends Component {
             <TabNavigator.Item
                 title = {title}
                 selected={this.state.selectedTab === title}
-                titleStyle={{color:'white'}}
-                selectedTitleStyle={{color:'white'}}
+                titleStyle={{color:'white',fontSize:12}}
+                selectedTitleStyle={{color:'white',fontSize:12}}
                 bacStyle={{backgroundColor:'#323232'}}
                 selectedBacStyle={{backgroundColor:'#FF2640'}}
                 renderIcon={() => <Image style={styles.tabIcon} source={img}/>}
@@ -67,7 +67,7 @@ export default class MainScreen extends Component {
 
 const styles = StyleSheet.create({
     tab: {
-        height: 45,
+        height: 50,
         backgroundColor: '#333333',
         alignItems: 'center',
     },

@@ -101,10 +101,10 @@ const styles = StyleSheet.create({
     },
     title1:{
       color:'#323232',
-      fontSize:10
+      fontSize:12
     },
     title2:{
       color:'#1A92E0',
-      fontSize:8
+      fontSize:10
     }
 });

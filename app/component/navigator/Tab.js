@@ -82,7 +82,7 @@ let styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:'#130c0e',
-    height:45,
+    height:50,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -97,6 +97,6 @@ let styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'stretch',
     marginTop: 2,
-    marginBottom: 5+ Layout.pixel,
+    marginBottom: 7+ Layout.pixel,
   },
 });

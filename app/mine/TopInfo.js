@@ -149,9 +149,9 @@ const styles = StyleSheet.create({
     width:12,
     height:12,
   },
-  text1:{
+  text1:{ 
     color:'white',
-    fontSize:10,
+    fontSize:12,
     fontWeight:'bold',
   },
 

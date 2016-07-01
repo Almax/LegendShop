@@ -23,6 +23,7 @@ import ThemePavilion from './home/ThemePavilion';
 
 import ProductList from './product/ProductList'
 import ProductDetail from './product/ProductDetail';
+import SearchProduct from './product/SearchProduct';
 
 import Login from './login/Login';
 
@@ -48,6 +49,12 @@ export default class HomePage extends Component {
         this._onRefresh=this._onRefresh.bind(this);
     }
 
+    componentDidMount() {
+        //获取首页数据
+
+
+    }
+
     _onLoginClick(title:string) {
        let navigator = this.props.navigator;
         navigator.push({
@@ -63,7 +70,7 @@ export default class HomePage extends Component {
        let navigator = this.props.navigator;
         navigator.push({
                name: title,
-               component: Login,
+               component: SearchProduct,
                params: {
                     title:title,
                 }

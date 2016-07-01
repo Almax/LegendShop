@@ -159,7 +159,7 @@ export default class CartPage extends React.Component {
         return (
           <View style={{flex: 1}}>
             <View style={styles.container}>
-                <Text style={{fontSize:12}}>
+                <Text style={{fontSize:15}}>
                   购物车
                 </Text>
             </View>
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
       paddingLeft: 5,
       paddingRight: 5,
       paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
-      height: Platform.OS === 'ios' ? 50 : 50,   // 处理iOS状态栏
+      height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
       backgroundColor: 'white',
       alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
   },
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   sectionHeader:{
     marginLeft:5,
-    fontSize:10,
+    fontSize:12,
   },
   icon:{
     width:12,
@@ -256,6 +256,6 @@ const styles = StyleSheet.create({
     height:13,
   },
   text1:{
-    fontSize:10,
+    fontSize:12,
   },
 });
