@@ -14,7 +14,6 @@ import React,{
 
 import Back from '../component/Back';
 import Swiper from 'react-native-swiper';
-import DetailTabPage from './DetailTabPage';
 import OrderCommit from '../order/OrderCommit';
 
 //详情具体展示页面，这里需要处理四种对应的组件变化状态
@@ -31,45 +30,45 @@ export default class ProductContent extends React.Component{
      };
   }
 
-  _renderProdProps(data){
-    return data.map((item,i)=>{
-      return (
-          <View key={i} style={{flex:1,flexDirection:'row',alignItems:'center',marginTop:10}}>
-            <Text style={[styles.text1,{marginRight:5}]}>{item.propName}</Text>
-            {this._renderProdPropsItem(item.prodPropValList)}
-          </View>
-         )
-    });
-  }
+  // _renderProdProps(data){
+  //   return data.map((item,i)=>{
+  //     return (
+  //         <View key={i} style={{flex:1,flexDirection:'row',alignItems:'center',marginTop:10}}>
+  //           <Text style={[styles.text1,{marginRight:5}]}>{item.propName}</Text>
+  //           {this._renderProdPropsItem(item.prodPropValList)}
+  //         </View>
+  //        )
+  //   });
+  // }
 
-  _handleClick(data,i){
-      let prodProps=this.state.prodProps;
-      for(let ii=0;ii<data.length;ii++){
-          data[ii].isSelected=false;
-          if(ii===i){
-            data[ii].isSelected=true;
-            prodProps+=data[ii].name;
-          }
-      }
-      this.setState({
-        prodProps:prodProps,
-      });
+  // _handleClick(data,i){
+  //     let prodProps=this.state.prodProps;
+  //     for(let ii=0;ii<data.length;ii++){
+  //         data[ii].isSelected=false;
+  //         if(ii===i){
+  //           data[ii].isSelected=true;
+  //           prodProps+=data[ii].name;
+  //         }
+  //     }
+  //     this.setState({
+  //       prodProps:prodProps,
+  //     });
+  //
+  // }
 
-  }
-
-  _renderProdPropsItem(data){
-    return data.map((item,i)=>{
-      return (
-        <TouchableOpacity key={i} onPress={()=>this._handleClick(data,i)}>
-          <Text style={[styles.text2,styles.border,
-              item.isSelected?{borderColor:'#FF303D',color:'#FF303D'}
-                             :{borderColor:'black',color:'black'}]}>
-            {item.name}
-          </Text>
-          </TouchableOpacity>
-         )
-    });
-  }
+  // _renderProdPropsItem(data){
+  //   return data.map((item,i)=>{
+  //     return (
+  //       <TouchableOpacity key={i} onPress={()=>this._handleClick(data,i)}>
+  //         <Text style={[styles.text2,styles.border,
+  //             item.isSelected?{borderColor:'#FF303D',color:'#FF303D'}
+  //                            :{borderColor:'black',color:'black'}]}>
+  //           {item.name}
+  //         </Text>
+  //         </TouchableOpacity>
+  //        )
+  //   });
+  // }
   _handleMinus(){
     let num=this.state.num;
     if(num!==0){
@@ -87,21 +86,21 @@ export default class ProductContent extends React.Component{
     });
 
   }
-  _getDefaultProdProps(data){
-    let defaultProdProps='';
-    let prodPropListParent=data.prodPropList;
-    for(let ii=0;ii<prodPropListParent.length;ii++){
-        let prodPropListChild=prodPropListParent[ii].prodPropValList;
-        for(let jj=0;jj<prodPropListChild.length;jj++){
-            if(prodPropListChild[jj].isSelected)defaultProdProps+=prodPropListChild[jj].name+'  ';
-        }
-    }
-    return defaultProdProps;
-  }
+  // _getDefaultProdProps(data){
+  //   let defaultProdProps='';
+  //   let prodPropListParent=data.prodPropList;
+  //   for(let ii=0;ii<prodPropListParent.length;ii++){
+  //       let prodPropListChild=prodPropListParent[ii].prodPropValList;
+  //       for(let jj=0;jj<prodPropListChild.length;jj++){
+  //           if(prodPropListChild[jj].isSelected)defaultProdProps+=prodPropListChild[jj].name+'  ';
+  //       }
+  //   }
+  //   return defaultProdProps;
+  // }
 
   render() {
-    let dataSource=this.props.dataSource;
-    let defaultProdProps=this._getDefaultProdProps(dataSource);
+    // let dataSource=this.props.dataSource;
+    let defaultProdProps='this._getDefaultProdProps(dataSource)';
     return (
       <ScrollView>
         <Swiper style={styles.wrapper} height={200}
@@ -113,14 +112,13 @@ export default class ProductContent extends React.Component{
         </Swiper>
 
         <View style={styles.container1}>
-           <Text style={styles.text1}>{dataSource.name}</Text>
-           <Text style={[styles.text2,{marginTop:10,marginBottom:10}]}>{'¥'+dataSource.cash}</Text>
-           <Text style={styles.text1}>{'原价：¥'+dataSource.price}</Text>
+           <Text style={styles.text1}>{'dataSource.name'}</Text>
+           <Text style={[styles.text2,{marginTop:10,marginBottom:10}]}>{'¥'+'dataSource.cash'}</Text>
+           <Text style={styles.text1}>{'原价：¥'+'dataSource.price'}</Text>
         </View>
 
         <View style={styles.container1}>
            <Text style={styles.text1}>{'已选  '+defaultProdProps}</Text>
-           {this._renderProdProps(dataSource.prodPropList)}
            <View style={styles.container2}>
               <Text style={styles.text1}>数量</Text>
               <View style={styles.container3}>
@@ -146,16 +144,12 @@ export default class ProductContent extends React.Component{
             </View>
          </View>
 
-        <DetailTabPage />
-
         <View style={styles.container1}>
            <Text style={styles.text1}>主体</Text>
            <Text style={[styles.text1,{marginTop:10,marginBottom:10}]}>型号 VW510L</Text>
             <Text style={[styles.text1,{marginBottom:10}]}>颜色 黑色</Text>
            <Text style={styles.text1}>系统 Windows7</Text>
         </View>
-
-        <DetailTabPage/>
 
         <View style={styles.container1}>
            <Text style={[styles.text1,{marginTop:10,marginBottom:10}]}>型号 VW510L\n 山东发送到发送到发送到 </Text>

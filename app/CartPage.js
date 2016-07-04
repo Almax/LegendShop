@@ -147,6 +147,7 @@ export default class CartPage extends React.Component {
           );
     }
     render() {
+      
       let content = this.state.dataSource.getRowCount() === 0 ?
         <ActivityIndicatorIOS style={styles.scrollSpinner} />:
         <ListView

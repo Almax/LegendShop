@@ -14,6 +14,7 @@ let window = {
 
 let colors = {
     lightGreyColor:'rgb(240, 242, 245)',//默认背景灰底
+    lightGreyColor1:'rgb(238, 238, 238)',//比默认灰底稍微深点
     lightColor:'rgb(206, 206, 211)',
     redColor:'rgb(255,0,0)',//正红
     lightBlackColor:'rgb(92, 92, 92)',//浅黑色
@@ -22,6 +23,8 @@ let colors = {
 let strings = {
     searchTabString:['默认','销量','评论数','价格'],
     orderByString:['buys','buys','comments','cash'],
+    detailTabString:['商品','详情','评价'],
+    judgeTabString:['全部评价','好评','中评','差评'],
 }
 
 //key,存储本地数据的key
@@ -52,7 +55,9 @@ let httpKeys = {
     //商品搜索
     SEARCH_API_KEY: '/appSearch/prodList?',
     //商品详情
-    PRODUCT_DETAIL_API_KEY: '/productDetail',
+    PRODUCT_DETAIL_API_KEY1: '/productDetail?',
+    PRODUCT_DETAIL_API_KEY2: '/productContent/',//get请求
+    PRODUCT_DETAIL_API_KEY3: '/productDetail',
 
 }
 

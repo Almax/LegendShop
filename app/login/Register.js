@@ -78,7 +78,7 @@ export default class Register extends React.Component {
                       {this.props.title}
                 </Text>
                 <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onLogin()}>
-                  <Text style={[styles.text,{fontSize:12,marginRight:10,color:'#6A6666'}]}>
+                  <Text style={[styles.text,{fontSize:13,marginRight:10,color:'#6A6666'}]}>
                       登录
                   </Text>
                 </TouchableOpacity>
@@ -124,7 +124,7 @@ export default class Register extends React.Component {
             </View>
 
             <View style={{flexDirection:'row',justifyContent:'center',margin:20}}>
-                <Text style={{color:'#666666',fontSize:10}}>点击注册，表示您同意LegendShop</Text>
+                <Text style={{color:'#666666',fontSize:12}}>点击注册，表示您同意LegendShop</Text>
                 <TouchableOpacity activeOpacity={0.7}>
                   <Text style={{color:'#0067C4',fontSize:10}}>《服务协议》</Text>
                 </TouchableOpacity>
@@ -167,7 +167,7 @@ let styles = StyleSheet.create({
   inputText: {
       flex: 1,
       backgroundColor: 'transparent',
-      fontSize: 10
+      fontSize: 12
   },
 
   okText: {
@@ -182,7 +182,7 @@ let styles = StyleSheet.create({
       color:'white',
       flexDirection:'row',
       backgroundColor: '#FF303D',
-      fontSize: 10,
+      fontSize: 13,
   },
   codeText: {
     height:30,
@@ -194,12 +194,12 @@ let styles = StyleSheet.create({
     color:'white',
     flexDirection:'row',
     backgroundColor: '#FF303D',
-    fontSize: 8,
+    fontSize: 10,
   },
 
   icon:{
-    width:20,
-    height:20,
+    width:22,
+    height:22,
     marginLeft:40,
     marginRight:5,
   },
@@ -237,7 +237,7 @@ let styles = StyleSheet.create({
       height:28,
   },
   text:{
-    fontSize:15,
+    fontSize:16,
   },
 
 });

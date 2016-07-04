@@ -109,7 +109,12 @@ let Util = {
     md5:(value)=>{
       return Md5(value);
     },
-
+    isEmptyObject:(obj)=>{
+      for(var n in obj){
+        return false;
+      }
+        return true;
+    },
 }
 
 export default Util;

@@ -98,7 +98,7 @@ export default class SearchProduct extends React.Component{
               {searchTitle}
           </View>
           {this._renderTab()}
-          <ProductListCell {...this.state} onLoading={this._onLoading.bind(this)}/>
+          <ProductListCell {...this.state} navigator={this.props.navigator}/>
       </View>
     );
   }

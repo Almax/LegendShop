@@ -36,7 +36,7 @@ export default class ProductListCell extends React.Component{
  constructor(props) {
     super(props);
     this.state={
-      isLoading: false,
+      loading: 0,//0是正在loading，－1返回错误，1返回正确
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
@@ -49,10 +49,16 @@ export default class ProductListCell extends React.Component{
   }
   //初始化渲染之后立即调用，这里可以进行网络请求等逻辑
   componentDidMount() {
+    console.log('tag','componentDidMount');
     InteractionManager.runAfterInteractions(() => {
       console.log('tag','keyword='+this.props.keyword);
-      if(this.props.keyword)
-      this._searchProduct('keyword='+this.props.keyword + '&' + 'orderBy=' + this.props.orderBy);
+      if(this.props.keyword){
+          this._searchProduct('keyword='+this.props.keyword + '&' + 'orderBy=' + this.props.orderBy);
+      }else{
+          this.setState({
+              loading: -1,
+          });
+        }
     });
   }
 
@@ -81,7 +87,7 @@ export default class ProductListCell extends React.Component{
 
      Utils.httpPostForm(Constant.httpKeys.HOST+Constant.httpKeys.SEARCH_API_KEY,data,
          (response) => {
-                 this.props.onLoading();
+                //  this.props.onLoading();
                  resultsCache.nextPageNumberForQuery[query] =this.state.queryNumber;//页码增加
                  let cacheData = resultsCache.dataForQuery[query];
                  //如果为空，则属于第一页，当前属于网络获取
@@ -94,28 +100,32 @@ export default class ProductListCell extends React.Component{
                  }
                  resultsCache.dataForQuery[query]=cacheData;
                  this.setState({
-                       isLoading: false,
+                       loading: 1,
                        dataSource: this._getDataSource(resultsCache.dataForQuery[query]),
                  });
 
            }, (error) => {
-                 this.props.onLoading();
+                //  this.props.onLoading();
                  console.log('_searchProduct error: ' + error);
                      Alert.alert('查询数据失败','错误信息＝'+error)
+                     this.setState({
+                           loading: -1,
+                           dataSource: [],
+                     });
            });
   }
 
   _searchProduct(query: string){
-    this.setState({filter: query,isLoading:true});
+    this.setState({filter: query,loading:0});
     //如果缓存存在数据则直接进心render并返回
     let cacheData = resultsCache.dataForQuery[query];
     if (cacheData) {
             this.setState({
               dataSource: this._getDataSource(cacheData),
               queryNumber:resultsCache.nextPageNumberForQuery[query],
-              isLoading: false,
+              loading: 1,
             });
-            this.props.onLoading();
+            // this.props.onLoading();
     }else{
         this.setState({
           queryNumber: this.state.queryNumber + 1,
@@ -124,7 +134,7 @@ export default class ProductListCell extends React.Component{
     }
   }
   _onEndReached(){
-    if (this.state.isLoading) {
+    if (this.state.loading===0) {
       return;
     }
     console.log('tag','_onEndReached');
@@ -141,13 +151,14 @@ export default class ProductListCell extends React.Component{
     return this.state.dataSource.cloneWithRows(data);
   }
 
-  _pressItem(title:string) {
+  _pressItem(title:string,prodId:number) {
      let navigator = this.props.navigator;
        navigator.push({
            name: title,
            component: ProductDetail,
            params: {
                 title:title,
+                prodId:prodId,
             }
        })
   }
@@ -177,7 +188,7 @@ export default class ProductListCell extends React.Component{
   ) {
     return (
       <ProductCell
-        onSelect={()=>this._pressItem('商品详情')}
+        onSelect={()=>this._pressItem('商品详情',product.prodId)}
         onHighlight={() => highlightRowFunc(sectionID, rowID)}
         onUnhighlight={() => highlightRowFunc(null, null)}
         product={product}
@@ -186,32 +197,36 @@ export default class ProductListCell extends React.Component{
   }
   render(){
     //注：因为新版本上拉加载更多，需要Threshold值
-
     console.log('tag','render');
+    let content;
+    switch (this.state.loading) {
+      case 0:
+      content = <ActivityIndicatorIOS style={styles.scrollSpinner} />;
+      break;
+      case 1:
+      content = <ListView
+                  ref="listview"
+                  renderSeparator={this._renderSeparator}
+                  dataSource={this.state.dataSource}
+                  renderFooter={this._renderFooter}
+                  renderRow={this._renderRow}
+                  onEndReached={this._onEndReached}
+                  onEndReachedThreshold={10}
+                  automaticallyAdjustContentInsets={false}
+                  keyboardDismissMode="on-drag"
+                  keyboardShouldPersistTaps={true}
+                  showsVerticalScrollIndicator={false}
+                  />;
+      break;
+      case -1:
+      content = <View style={styles.noContent}>
+                <Text style={{fontSize:15}}>
+                    暂无内容
+                </Text>
+              </View>;
+      break;
+    }
 
-    let defaultContent=this.state.loading?
-    <ActivityIndicatorIOS style={styles.scrollSpinner} />:
-    <View style={styles.noContent}>
-        <Text style={{fontSize:15}}>
-            暂无内容
-        </Text>
-    </View>;
-
-    let content = this.state.dataSource.getRowCount() === 0 ?
-      defaultContent:
-      <ListView
-        ref="listview"
-        renderSeparator={this._renderSeparator}
-        dataSource={this.state.dataSource}
-        renderFooter={this._renderFooter}
-        renderRow={this._renderRow}
-        onEndReached={this._onEndReached}
-        onEndReachedThreshold={10}
-        automaticallyAdjustContentInsets={false}
-        keyboardDismissMode="on-drag"
-        keyboardShouldPersistTaps={true}
-        showsVerticalScrollIndicator={false}
-      />;
     return (
           <View style={{flex:1,backgroundColor:'#F1F2F6'}}>
             {content}

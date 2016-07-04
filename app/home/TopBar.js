@@ -24,21 +24,25 @@ export default class TopBar extends Component {
   }
 
   componentDidMount() {
-    Utils.storageGetItem(Constant.storeKeys.LOGIN_INFO_KEY)
-        .then((value)=> {
-          if(value){
-          console.log('tag','登录信息获取＝'+JSON.stringify(value));
-          if(value.accessToken)
-            this.setState({
-                  login:'已登录',
-            });
-          }
-        });
+    //查询是否登录
+    // Utils.storageGetItem(Constant.storeKeys.LOGIN_INFO_KEY)
+    //     .then((value)=> {
+    //       if(value){
+    //       console.log('tag','登录信息获取＝'+JSON.stringify(value));
+    //       if(value.accessToken)
+    //         this.setState({
+    //               login:'已登录',
+    //         });
+    //       }
+    //     });
+
+
+
   }
 
-    _onLoginClick(title:string){
-        if (this.props._onLoginClick) {
-            this.props._onLoginClick(title);
+    _onCodeClick(title:string){
+        if (this.props._onCodeClick) {
+            this.props._onCodeClick(title);
         }
     }
 
@@ -61,11 +65,7 @@ export default class TopBar extends Component {
                         搜索...
                     </Text>
                 </View>
-                <TouchableOpacity onPress={()=>this._onLoginClick('登录')} activeOpacity={0.7}>
-                  <Text style={styles.loginText}>
-                    {this.state.login}
-                  </Text>
-                </TouchableOpacity>
+                <Image source={require('../image/two_dim_code_@2x.png')}/>
             </View>
             <View style={styles.separate}/>
           </View>

@@ -16,6 +16,7 @@ import React, {
 import TopInfo from './mine/TopInfo';
 import MyMenu from './mine/MyMenu';
 import MyItem from './mine/MyItem';
+import Login from './login/Login';
 
 //个人中心，涉及数据变化的部分进行组件封装，便于后期维护修改
 
@@ -30,6 +31,16 @@ export default class MinePage extends React.Component {
     _onClick() {
 
     }
+    _onLoginClick(title:string) {
+       let navigator = this.props.navigator;
+        navigator.push({
+               name: title,
+               component: Login,
+               params: {
+                    title:title,
+                }
+        })
+    }
     render() {
         return (
           <View style={{flex: 1}}>
@@ -40,8 +51,8 @@ export default class MinePage extends React.Component {
               </View>
               <View style={styles.separate}/>
               <ScrollView style={styles.container1}>
-                      <Image source={require('./image/mine_bg.jpg')} style={styles.backgroundImage}/>
-                      <TopInfo/>
+                      <Image  source={require('./image/mine_bg.jpg')} style={styles.backgroundImage}/>
+                      <TopInfo _onLoginClick={this._onLoginClick.bind(this)}/>
                       <MyMenu/>
                       <MyItem/>
               </ScrollView>

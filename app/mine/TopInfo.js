@@ -26,8 +26,10 @@ export default class TopInfo extends React.Component {
         super(props);
     }
 
-    _onClickLogin() {
-
+    _onLoginClick(title:string) {
+      if (this.props._onLoginClick) {
+          this.props._onLoginClick(title);
+      }
     }
 
     _onClickItem(){
@@ -53,11 +55,13 @@ export default class TopInfo extends React.Component {
               <Text style={styles.text1}>
                 账号锁定：已锁定
               </Text>
-              <View style={styles.container3}>
-                <Text style={styles.text1}>
-                  管理账户>>
-                </Text>
-              </View>
+              <TouchableOpacity onPress={()=>this._onLoginClick('登录')} activeOpacity={0.7}>
+                <View style={styles.container3}>
+                  <Text style={styles.text1}>
+                    管理账户>>
+                  </Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.container}>
@@ -149,7 +153,7 @@ const styles = StyleSheet.create({
     width:12,
     height:12,
   },
-  text1:{ 
+  text1:{
     color:'white',
     fontSize:12,
     fontWeight:'bold',

@@ -167,7 +167,7 @@ let styles = StyleSheet.create({
   inputText: {
       flex: 1,
       backgroundColor: 'transparent',
-      fontSize: 10
+      fontSize: 12
   },
 
   okText: {
@@ -183,7 +183,7 @@ let styles = StyleSheet.create({
       color:'white',
       flexDirection:'row',
       backgroundColor: '#FF303D',
-      fontSize: 10,
+      fontSize: 13,
   },
   codeText: {
     height:30,
@@ -195,12 +195,12 @@ let styles = StyleSheet.create({
     color:'white',
     flexDirection:'row',
     backgroundColor: '#FF303D',
-    fontSize: 8,
+    fontSize: 10,
   },
 
   icon:{
-    width:20,
-    height:20,
+    width:22,
+    height:22,
     marginLeft:40,
     marginRight:5,
   },
@@ -238,7 +238,7 @@ let styles = StyleSheet.create({
       height:28,
   },
   text:{
-    fontSize:15,
+    fontSize:16,
   },
 
 });

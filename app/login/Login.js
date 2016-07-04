@@ -141,7 +141,7 @@ export default class Login extends React.Component {
                       {this.props.title}
                 </Text>
                 <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onRegister('注册')}>
-                  <Text style={[styles.text,{fontSize:12,marginRight:10,color:'#6A6666'}]}>
+                  <Text style={[styles.text,{fontSize:13,marginRight:10,color:'#6A6666'}]}>
                         注册
                   </Text>
                 </TouchableOpacity>
@@ -175,13 +175,13 @@ export default class Login extends React.Component {
 
             <View style={styles.container2}>
              <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onSetRemberAccount()}>
-                <View style={{flexDirection:'row',alignItems:'center',marginLeft:10}}>
+                <View style={{flexDirection:'row',alignItems:'center',marginLeft:15}}>
                   <Image source={img} style={styles.icon1}/>
-                  <Text style={{fontSize:10,color:'#666666'}}> 记住账号 </Text>
+                  <Text style={{fontSize:12,color:'#666666'}}> 记住账号 </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onForgetClick('密码找回')}>
-                  <Text style={{color:'#0067C4',fontSize:10,marginRight:10,}}> 忘记密码？</Text>
+                  <Text style={{color:'#0067C4',fontSize:12,marginRight:10,}}> 忘记密码？</Text>
               </TouchableOpacity>
             </View>
 
@@ -192,7 +192,7 @@ export default class Login extends React.Component {
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',
               paddingTop:10,paddingBottom:10,marginTop:10}}>
                 <View style={styles.separate1}/>
-                <Text style={{fontSize:10,color:'#666666'}}>其他方式登录</Text>
+                <Text style={{fontSize:12,color:'#666666'}}>其他方式登录</Text>
                 <View style={styles.separate1}/>
             </View>
 
@@ -252,7 +252,7 @@ let styles = StyleSheet.create({
   inputText: {
       flex: 1,
       backgroundColor: 'transparent',
-      fontSize: 10
+      fontSize: 12
   },
 
   okText: {
@@ -268,18 +268,18 @@ let styles = StyleSheet.create({
       marginTop:15,
       flexDirection:'row',
       backgroundColor: '#FF303D',
-      fontSize: 10,
+      fontSize: 13,
   },
   codeText: {
       color:'#A79BCD',
       marginRight:25,
       marginLeft:15,
-      fontSize: 10
+      fontSize: 12
   },
 
   icon:{
-    width:20,
-    height:20,
+    width:22,
+    height:22,
     marginLeft:40,
     marginRight:5,
   },
@@ -313,11 +313,9 @@ let styles = StyleSheet.create({
 
   icon3:{
      marginLeft:5,
-      width:28,
-      height:28,
   },
   text:{
-    fontSize:15,
+    fontSize:16,
   },
 
 });

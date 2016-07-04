@@ -55,15 +55,8 @@ export default class HomePage extends Component {
 
     }
 
-    _onLoginClick(title:string) {
-       let navigator = this.props.navigator;
-        navigator.push({
-               name: title,
-               component: Login,
-               params: {
-                    title:title,
-                }
-        })
+    _onCodeClick(title:string) {
+
     }
 
     _onSearchClick(title:string) {
@@ -84,6 +77,8 @@ export default class HomePage extends Component {
                component: ProductList,
                params: {
                     title:title,
+                    orderBy:'buys',
+                    keyword:'包',
                 }
         })
     }
@@ -101,7 +96,6 @@ export default class HomePage extends Component {
         this.setState({isRefreshing: true});
         setTimeout(() => {
           //这里从新获取数据
-
           this.setState({
             isRefreshing: false,
           });
@@ -110,14 +104,14 @@ export default class HomePage extends Component {
     render() {
         return (
             <View style={{flex: 1}}>
-              <TopBar  _onSearchClick={this._onSearchClick.bind(this)}  _onLoginClick={this._onLoginClick.bind(this)}/>
+              <TopBar  _onSearchClick={this._onSearchClick.bind(this)}  _onCodeClick={this._onCodeClick.bind(this)}/>
 	            <ScrollView style={styles.container1}
                           refreshControl={
                             <RefreshControl
                               refreshing={this.state.isRefreshing}
                               onRefresh={this._onRefresh}
                           />}>
-                <Swiper style={styles.wrapper} height={145}
+                <Swiper style={styles.wrapper} height={145} autoplay={true} autoplayTimeout={5}
                         paginationStyle={styles.paginationStyle}
                         loop={true}>
                         <TouchableHighlight onPress={()=>this._onItemClick('商品详情')}>
@@ -159,7 +153,7 @@ export default class HomePage extends Component {
                                 onClick={()=>this._onMenuClick('品牌')}/>
                 </View>
                 <Recommend  onItemClick={this._onItemClick.bind(this)} onMoreClick={this._onMenuClick.bind(this)}/>
-                <Swiper style={styles.wrapper} height={70}
+                <Swiper style={styles.wrapper} height={70} autoplay={true} autoplayTimeout={5}
                   paginationStyle={styles.paginationStyle}
                   loop={true}>
                   <TouchableHighlight onPress={()=>this._onItemClick('商品详情')}>

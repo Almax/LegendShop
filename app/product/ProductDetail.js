@@ -14,47 +14,31 @@ import React,{
   View,
 } from 'react-native';
 
+import ProductDetail1 from './ProductDetail1';
+import ProductDetail2 from './ProductDetail2';
+import ProductDetail3 from './ProductDetail3';
+
 import Back from '../component/Back';
 import Swiper from 'react-native-swiper';
 import OrderCommit from '../order/OrderCommit';
 
-const PRODUCT_DETAIL_URL='http://react.legendshop.cn/productDetail?prodId=';
+import Constant from '../common/Constant';
 
-import ProductContent from './ProductContent';
+let defaultTab=Constant.strings.detailTabString;
 
 export default class ProductDetail extends React.Component{
 
   constructor(props) {
      super(props);
      this.state={
-       loadingState:false,
-       dataSource:null,
+       pageIndex:0,
      };
-     this._onClick=this._onClick.bind(this);
   }
-  //根据传递参数获取详情数据
   _fetchData(){
-      fetch(PRODUCT_DETAIL_URL+'694')
-      .then((response) => response.json())
-      .catch((error) => {
-        this.setState({
-          loadState:false,
-          dataSource:null,
-        });
-      })
-      .then((responseData) => {
-        console.log('详情数据返回－>',JSON.stringify(responseData));
-        //这里需要对返回的数据进行判断状态，然后进入state刷新
-          this.setState({
-            loadState: true,
-            dataSource: responseData,
-          });
-      })
-      .done();
+
+
   }
-  //从网络获取数据
   componentDidMount() {
-    console.log('tag','componentDidMount');
     InteractionManager.runAfterInteractions(() => {
       this._fetchData();
     });
@@ -64,13 +48,13 @@ export default class ProductDetail extends React.Component{
   }
   _onPayClick(){
     let navigator = this.props.navigator;
-    navigator.push({
-            name: '订单填写',
-              component: OrderCommit,
-            params: {
-                 title:'订单填写',
-             }
-    })
+      navigator.push({
+              name: '订单填写',
+                component: OrderCommit,
+              params: {
+                   title:'订单填写',
+               }
+      })
   }
   _onCartClick(){
 
@@ -78,131 +62,140 @@ export default class ProductDetail extends React.Component{
   _onFollowClick(){
 
   }
-  render() {
 
-    let content=this.state.dataSource?
-    <View style={{flex:1}}>
-        <ProductContent dataSource={this.state.dataSource}/>
-        <View style={styles.bottom}>
-          <TouchableOpacity onPress={()=>this._onFollowClick('关注')} activeOpacity={0.7}>
-            <View style={styles.bottomContainer1}>
-                <Image source={require('./img/icon_collection.png')} style={styles.icon}/>
-                <Text style={[styles.text1,{color:'white',marginLeft:5}]}>关注</Text>
-            </View>
-          </TouchableOpacity>
-          <View style={styles.bottomContainer1}>
-            <TouchableOpacity onPress={()=>this._onCartClick('加入购物车')} activeOpacity={0.7}>
-              <Text style={[styles.bottomText,{backgroundColor:'#F47022'}]}>加入购物车</Text>
+  _renderTab(){
+    let tab = defaultTab.map((item,i)=>{
+          return (
+            <TouchableOpacity key={i} activeOpacity={0.7} onPress = {()=> this.setState(
+              {pageIndex: i})}>
+              <View style={{alignItems:'center',marginRight:15}}>
+                  <Text style={[styles.defaultText,this.state.pageIndex==i?styles.selectText:null]}>{item}</Text>
+                  <View style={[styles.defaultLine,this.state.pageIndex==i?styles.selectLine:null]}/>
+              </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>this._onPayClick('购买')} activeOpacity={0.7}>
-              <Text style={[styles.bottomText,{backgroundColor:'#FF4854',marginLeft:8}]}>立即购买</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-    </View>:
-    <ActivityIndicatorIOS style={styles.scrollSpinner}/>;
-
+             )
+        });
     return (
-      <View style={{flex: 1,backgroundColor:'#F1F2F6',}}>
-          <Back title={this.props.title} onClick={this._onClick}/>
-          {content}
-      </View>
+          <View style={styles.tabContainer}>
+            {tab}
+          </View>
     );
   }
+
+  render() {
+    let page;
+    switch (this.state.pageIndex) {
+      case 0:
+          page = < ProductDetail1 prodId={this.props.prodId}/>
+              break;
+      case 1:
+          page = < ProductDetail2 prodId={this.props.prodId}/>
+              break;
+      case 2:
+          page = < ProductDetail3 />
+              break;
+
+            };
+    let content = <View style={{flex:1}}>
+                    {page}
+                    <View style={styles.bottom}>
+                      <TouchableOpacity onPress={()=>this._onFollowClick('关注')} activeOpacity={0.7}>
+                        <View style={styles.bottomContainer1}>
+                            <Image source={require('./img/icon_collection.png')} style={styles.icon}/>
+                            <Text style={[styles.text1,{color:'white',marginLeft:5}]}>关注</Text>
+                        </View>
+                      </TouchableOpacity>
+                      <View style={styles.bottomContainer1}>
+                        <TouchableOpacity onPress={()=>this._onCartClick('加入购物车')} activeOpacity={0.7}>
+                          <Text style={[styles.bottomText,{backgroundColor:'#F47022'}]}>加入购物车</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this._onPayClick('购买')} activeOpacity={0.7}>
+                          <Text style={[styles.bottomText,{backgroundColor:'#FF4854',marginLeft:8}]}>立即购买</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                </View>;
+
+    return (
+        <View style={{flex: 1,backgroundColor:'#F1F2F6'}}>
+            <View >
+              <View style={styles.container}>
+                  <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onClick()}>
+                      <Image source={require('../image/ic_arrow_back_black_@2x.png')}/>
+                  </TouchableOpacity>
+                  {this._renderTab()}
+              </View>
+              <View style={styles.separate}/>
+            </View>
+            {content}
+        </View>
+      );
+    }
 }
 const styles = StyleSheet.create({
-  container1:{
-    backgroundColor:'white',
-    marginTop:10,
-    padding:10,
-  },
-  container2:{
-    flex:1,
-    flexDirection:'row',
-    marginTop:10,
-    marginBottom:10,
-    justifyContent:'flex-start',
-    alignItems:'center',
-  },
-  container3:{
-    flex:1,
-    flexDirection:'row',
-    marginLeft:10,
-    justifyContent:'flex-start',
-    alignItems:'center',
-  },
-  container4:{
-    flexDirection:'row',
-    marginLeft:10,
-    alignItems:'center',
-  },
-  wrapper: {
-    flex:1,
-    backgroundColor:'white',
-    marginTop:10,
-  },
-  paginationStyle:{
-    bottom: 5,
-  },
-  text2:{
-    color:'#FF303D',
-    fontWeight:'100',
-    fontSize:10,
-  },
-  text1:{
-    fontSize:10,
-  },
-  border1:{
-    borderWidth:0.5,
-    padding:2,
-    borderRadius: 3,  // 设置圆角边
-    borderColor:'#DEDEDE',
-  },
-  border2:{
-    borderWidth:0.5,
-    padding:2,
-    borderRadius: 3,  // 设置圆角边
-    borderColor:'#FF303D',
-  },
-  border3:{
-    borderWidth:0.5,
-    paddingLeft:12,
-    paddingRight:12,
-    paddingTop:3,
-    paddingBottom:3,
-    borderRadius: 2,  // 设置圆角边
-    borderColor:'#DEDEDE',
-  },
-  img:{
-    width:12,
-    height:12,
-  },
-  bottom:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center',
-    height:50,
-    backgroundColor:'#808080',
-  },
-  bottomContainer1:{
-    flexDirection:'row',
-    alignItems:'center',
-    padding:10,
-  },
-  bottomText:{
-    color:'white',
-    fontSize:10,
-    paddingLeft:22,
-    borderRadius:2,
-    paddingRight:22,
-    paddingTop:11,
-    paddingBottom:11,
-  },
-  icon:{
-    width:15,
-    height:13,
-  },
-  scrollSpinner: {
-    marginVertical: 20,
-  },
+    container: {
+          flexDirection: 'row', // 水平排布
+          paddingLeft: 5,
+          paddingRight: 5,
+          paddingTop: Platform.OS === 'ios' ? 20 : 0, // 处理iOS状态栏
+          height: Platform.OS === 'ios' ? 60 : 60, // 处理iOS状态栏
+          backgroundColor: 'white',
+          alignItems: 'center' // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
+      },
+      separate: {
+          height: 1,
+          backgroundColor: '#A7A7AA',
+      },
+      bottom: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          height: 50,
+          backgroundColor: '#808080',
+      },
+      bottomContainer1: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 10,
+      },
+      bottomText: {
+          color: 'white',
+          fontSize: 12,
+          paddingLeft: 22,
+          borderRadius: 2,
+          paddingRight: 22,
+          paddingTop: 11,
+          paddingBottom: 11,
+      },
+      tabContainer: {
+          flexDirection: 'row',
+          flex: 1,
+          justifyContent: 'center',
+          marginTop: 8,
+          backgroundColor: 'white'
+      },
+      icon: {
+          width: 15,
+          height: 13,
+      },
+      selectText: {
+          color: Constant.colors.redColor,
+          fontSize: 15,
+      },
+      defaultText: {
+          fontSize: 15,
+          color: 'black',
+      },
+      selectLine: {
+          backgroundColor: Constant.colors.redColor,
+          height: 3,
+          marginTop: 10,
+          width: 60,
+      },
+      defaultLine: {
+          backgroundColor: 'transparent',
+          height: 3,
+          marginTop: 10,
+          width: 60,
+      },
 });

@@ -101,8 +101,8 @@ export default class MyMenu extends React.Component {
           <MenuButton key={i}
                     renderIcon={item.img}
                     showText={item.txt}
-                    textStyle={{fontSize:10}}
-                    iconStyle={{width:17,height:17,marginBottom:3}}/>
+                    textStyle={{fontSize:12}}
+                    iconStyle={{width:18,height:18,marginBottom:3}}/>
         )
       });
     }
@@ -143,8 +143,8 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
   },
   image:{
-    width:15,
-    height:15,
+    width:18,
+    height:18,
   },
   text1:{
     marginLeft:5,
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   text2:{
     marginRight:5,
-    fontSize:10,
+    fontSize:12,
     color:'#6C656C',
   },
 });

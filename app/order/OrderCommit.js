@@ -104,7 +104,7 @@ export default class OrderCommit extends React.Component{
                       </View>
                   </View>
 
-                  <View style={[styles.container2,{width:300,marginTop:8,}]}>
+                  <View style={[styles.container2,{width:300,marginTop:18,}]}>
                       <Image source={require('./img/icon_add.png')} style={styles.icon}/>
                       <TextInput
                           keyboardType='web-search'
@@ -222,18 +222,18 @@ const styles = StyleSheet.create({
     backgroundColor:'#F0F0F0',
   },
   icon:{
-    width:13,
-    height:13,
-    marginRight:2,
+    width:18,
+    height:18,
+    marginRight:5,
 
   },
   text:{
-    fontSize:10,
+    fontSize:13,
   },
   inputText: {
       flex: 1,
       backgroundColor: 'transparent',
-      fontSize: 10,
+      fontSize: 13,
   },
   bottom:{
     flexDirection:'row',
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   },
   bottomText:{
     color:'white',
-    fontSize:10,
+    fontSize:13,
     paddingLeft:22,
     borderRadius:2,
     paddingRight:22,

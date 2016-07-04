@@ -30,15 +30,12 @@ export default class Back extends React.Component {
           <View >
             <View style={styles.container}>
                 <TouchableOpacity activeOpacity={0.7} onPress={this._onClick}>
-                    <View >
-                      <Image source={require('../image/ic_arrow_back_black_@2x.png')} style={styles.img}/>
-                    </View>
+                  <Image source={require('../image/ic_arrow_back_black_@2x.png')}/>
                 </TouchableOpacity>
                 <Text style={[styles.text,{marginRight:20}]}>
                       {title}
                 </Text>
-                <Text style={styles.text}>
-                </Text>
+                <Text style={styles.text}></Text>
             </View>
             <View style={styles.separate}/>
           </View>
@@ -61,9 +58,6 @@ const styles = StyleSheet.create({
   separate:{
     height:1,
     backgroundColor:'#A7A7AA',
-  },
-  img:{
-      marginLeft:5,
   },
   text:{
     fontSize:15,
