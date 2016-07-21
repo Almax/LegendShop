@@ -8,6 +8,8 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
+import Constant from '../common/Constant';
+
 const ACTIVE_BANNER_IMGS = [
     require('../image/activity_banner01_@2x.jpg'),
     require('../image/activity_banner02_@2x.jpg'),
@@ -28,6 +30,8 @@ const ACTIVE_BANNER_IMGS = [
    }
 
   render() {
+
+      console.log('tag','宽度='+Constant.window.width/2);
     return(
           <View style={styles.parent}>
               <View style={styles.container}>
@@ -41,10 +45,12 @@ const ACTIVE_BANNER_IMGS = [
                 </TouchableOpacity>
               </View>
               <View style={[styles.separate,{marginTop:3}]}/>
-              <View style={{flex:1,flexDirection:'row',padding:3}}>
-                <TouchableOpacity onPress={()=>this._onItemClick('商品详情')} activeOpacity={0.7}>
-                  <Image source={ACTIVE_BANNER_IMGS[0]} style={styles.image2}/>
-                </TouchableOpacity>
+              <View style={{flex:1,flexDirection:'row'}}>
+                  <View style={{flex:1}}>
+                    <TouchableOpacity onPress={()=>this._onItemClick('商品详情')} activeOpacity={0.7}>
+                      <Image source={ACTIVE_BANNER_IMGS[0]} style={styles.image2}/>
+                    </TouchableOpacity>
+                  </View>
                 <View style={styles.separate1}/>
                 <View style={{flex:1}}>
                   <TouchableOpacity onPress={()=>this._onItemClick('商品详情')} activeOpacity={0.7}>
@@ -86,16 +92,18 @@ const styles = StyleSheet.create({
     },
     separate1:{
       width:1,
-      height:180,
+      height:Constant.window.width/2,
       backgroundColor:'#F0F0F0',
     },
     image1:{
-      width:180,
-      height:90,
+      width:Constant.window.width/2,
+      resizeMode:'stretch',
+      height:Constant.window.width/4,
     },
     image2:{
-      width:180,
-      height:180,
+      width:Constant.window.width/2,
+      resizeMode:'stretch',
+      height:Constant.window.width/2,
     },
     title1:{
       color:'#323232',

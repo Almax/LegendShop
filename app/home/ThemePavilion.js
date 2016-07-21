@@ -8,6 +8,8 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
+import Constant from '../common/Constant';
+
 const THEME_BANNER_IMGS = [
     require('../image/themes_banner01_@2x.jpg'),
     require('../image/themes_banner02_@2x.jpg'),
@@ -105,11 +107,11 @@ const styles = StyleSheet.create({
     },
     separate1:{
       width:0.5,
-      height:180,
+      height:Constant.window.width/2,
       backgroundColor:'#F0F0F0',
     },
     image1:{
-      width:180,
+      width:Constant.window.width/2,
       height:60,
     },
     title1:{

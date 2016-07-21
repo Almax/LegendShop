@@ -52,7 +52,7 @@ export default class Login extends React.Component {
         });
   }
 
-  _onForgetClick(title:string){
+  _onForgetClick(title){
     let navigator = this.props.navigator;
       navigator.push({
           name: title,
@@ -108,7 +108,7 @@ export default class Login extends React.Component {
       });
   }
 
-  _onRegister(title:string){
+  _onRegister(title){
     let navigator = this.props.navigator;
       navigator.push({
           name: title,

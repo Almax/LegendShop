@@ -80,7 +80,7 @@ export default class SearchProduct extends React.Component{
           <View style={styles.container}>
               <TouchableOpacity activeOpacity={0.7} onPress={()=>this._onClick()}>
                   <View >
-                    <Image source={require('../image/ic_arrow_back_black_@2x.png')} style={styles.img}/>
+                      <Image source={require('../image/ic_arrow_back_black_@2x.png')}/>
                   </View>
               </TouchableOpacity>
               <View style={styles.searchBox}>
@@ -108,8 +108,8 @@ let styles = StyleSheet.create({
   container: {
       flexDirection: 'row',   // 水平排布
       justifyContent:'space-between',
-      paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
-      height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
+      paddingTop: 20,
+      height: 60,
       backgroundColor: 'white',
       alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
   },
@@ -129,11 +129,6 @@ let styles = StyleSheet.create({
       height: 17,
       width: 17,
       resizeMode: 'stretch'
-  },
-  img:{
-    marginLeft:5,
-      width:28,
-      height:28,
   },
   searchIcon: {
       marginLeft: 6,

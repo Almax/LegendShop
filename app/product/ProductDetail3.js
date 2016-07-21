@@ -27,7 +27,7 @@ export default class ProductDetail3 extends React.Component{
             return (
               <TouchableOpacity key={i} activeOpacity={0.7} onPress = {()=> this.setState(
                 {tabIndex: i})}>
-                <View style={{alignItems:'center',marginRight:15}}>
+                <View style={[styles.defaultContainer,this.state.tabIndex==i?styles.selectContainer:null]}>
                     <Text style={[styles.defaultText,this.state.tabIndex==i?styles.selectText:null]}>{item}</Text>
                 </View>
               </TouchableOpacity>
@@ -66,18 +66,30 @@ const styles = StyleSheet.create({
           alignItems:'center',
           backgroundColor:Constant.colors.lightGreyColor,
         },
+        selectContainer: {
+            alignItems:'center',
+            padding:5,
+            marginLeft:10,
+            borderRadius:3,
+            borderColor:'#F0F0F0',
+            backgroundColor:'rgb(237, 89, 104)',
+        },
+        defaultContainer: {
+            alignItems:'center',
+            padding:5,
+            marginLeft:10,
+            borderRadius:3,
+            borderColor:'#F0F0F0',
+            backgroundColor:'rgb(206, 206, 211)',
+        },
         selectText:{
             color:'white',
-            borderRadius:4,
-            padding:6,
-            backgroundColor:'rgb(237, 89, 104)',
+            backgroundColor:'transparent',
             fontSize:15,
         },
         defaultText: {
             fontSize: 15,
-            padding:6,
-            borderRadius:4,
-            backgroundColor:'rgb(206, 206, 211)',
+            backgroundColor:'transparent',
             color:'black',
         },
 });

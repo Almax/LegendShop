@@ -7,6 +7,7 @@ import React, {
     StyleSheet,
     ScrollView,
     Alert,
+    StatusBar,
     RefreshControl,
     TouchableOpacity,
     InteractionManager,
@@ -104,6 +105,12 @@ export default class HomePage extends Component {
     render() {
         return (
             <View style={{flex: 1}}>
+            <StatusBar
+                backgroundColor='white'
+                translucent={true}
+                hidden={false}
+                animated={true}
+              />
               <TopBar  _onSearchClick={this._onSearchClick.bind(this)}  _onCodeClick={this._onCodeClick.bind(this)}/>
 	            <ScrollView style={styles.container1}
                           refreshControl={

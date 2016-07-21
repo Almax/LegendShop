@@ -5,9 +5,13 @@ import React, {
   Navigator,
 } from 'react-native';
 
-import Splash from './Splash';
-//定义默认路由导航器
- export default class Legendshop extends React.Component {
+//关闭warning
+console.disableYellowBox = true;
+console.warn('YellowBox is disabled.');
+
+import Splash from './app/Splash';
+//定义默认路由导航器，以及路由切换页面时的传参方式
+ export default class LegendShop extends React.Component {
   render() {
     let defaultName = 'Splash';
     let defaultComponent = Splash;
@@ -22,4 +26,4 @@ import Splash from './Splash';
   }
 }
 //这一步是应用入口
-AppRegistry.registerComponent('Legendshop', () => Legendshop);
+AppRegistry.registerComponent('LegendShop', () => LegendShop);

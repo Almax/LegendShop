@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Platform,
   View,
 } from 'react-native';
 
@@ -97,6 +98,6 @@ let styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'stretch',
     marginTop: 2,
-    marginBottom: 7+ Layout.pixel,
+    marginBottom: Platform.OS==='ios'?7+ Layout.pixel:5+ Layout.pixel,
   },
 });

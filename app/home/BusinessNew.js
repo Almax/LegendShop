@@ -9,6 +9,8 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
+import Constant from '../common/Constant';
+
 const NEW_BANNER_IMGS = [
   require('../image/new_banner01_@2x.jpg'),
   require('../image/new_banner02_@2x.jpg'),
@@ -51,9 +53,11 @@ const NEW_BANNER_IMGS = [
                   </TouchableOpacity>
                 </View>
                 <View style={styles.separate1}/>
-                <TouchableOpacity onPress={()=>this._onItemClick('商品详情')} activeOpacity={0.7}>
-                  <Image source={NEW_BANNER_IMGS[2]} style={styles.image2}/>
-                </TouchableOpacity>
+                <View style={styles.container1}>
+                    <TouchableOpacity onPress={()=>this._onItemClick('商品详情')} activeOpacity={0.7}>
+                      <Image source={NEW_BANNER_IMGS[2]} style={styles.image2}/>
+                    </TouchableOpacity>
+                </View>
               </View>
           </View>
     )
@@ -80,7 +84,6 @@ const styles = StyleSheet.create({
     container2:{
       flex:1,
       flexDirection:'row',
-      padding:3
     },
     separate:{
       height:0.5,
@@ -88,16 +91,18 @@ const styles = StyleSheet.create({
     },
     separate1:{
       width:1,
-      height:180,
+      height:Constant.window.width/2,
       backgroundColor:'#F0F0F0',
     },
     image1:{
-      width:180,
-      height:90,
+      width:Constant.window.width/2,
+      resizeMode:'stretch',
+      height:Constant.window.width/4,
     },
     image2:{
-      width:180,
-      height:180,
+      width:Constant.window.width/2,
+      resizeMode:'stretch',
+      height:Constant.window.width/2,
     },
     title1:{
       color:'#323232',

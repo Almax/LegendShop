@@ -57,12 +57,12 @@ export default class ProductDetail1 extends React.Component{
     let product=this.state.product;
     if(Utils.isEmptyObject(product)){
       return (
-            <Image resizeMode={'contain'} style={styles.image} source={require('./img/product_banner1_@2x.jpg')}/>
+            <Image resizeMode={'stretch'} style={styles.image}/>
           )
     }else{
       return product.prodPics.map((item,i)=>{
             return (
-                <Image key={i} resizeMode={'contain'} style={styles.image} source={{uri:Constant.httpKeys.IMAGE_API_HOST+item}}/>
+                <Image key={i} resizeMode={'stretch'} style={styles.image} source={{uri:Constant.httpKeys.IMAGE_API_HOST+item}}/>
                )
       });
     }
@@ -89,7 +89,9 @@ export default class ProductDetail1 extends React.Component{
           </View>
         </TouchableOpacity>
 
-        <Text style={styles.priceText}>{'¥'+this.state.product.price}</Text>
+         <View style={{padding: 10}}>
+              <Text style={styles.priceText}>{'¥'+this.state.product.price}</Text>
+         </View>
 
         <View style={styles.separate}/>
 
@@ -155,9 +157,7 @@ const styles = StyleSheet.create({
   },
   priceText:{
     fontSize:15,
-    padding:10,
     backgroundColor:'white',
-    marginTop:20,
     color:Constant.colors.redColor,
   },
   defaultText:{

@@ -164,7 +164,8 @@ export default class ProductListCell extends React.Component{
   }
 
   _renderFooter(){
-    return <ActivityIndicatorIOS style={styles.scrollSpinner} />;
+    return  Platform.OS === 'ios'? <ActivityIndicatorIOS style={styles.scrollSpinner}/>:
+            <ProgressBarAndroid styleAttr="Inverse" />;
   }
 
   _renderSeparator(
@@ -201,7 +202,8 @@ export default class ProductListCell extends React.Component{
     let content;
     switch (this.state.loading) {
       case 0:
-      content = <ActivityIndicatorIOS style={styles.scrollSpinner} />;
+      content = Platform.OS === 'ios'? <ActivityIndicatorIOS style={styles.scrollSpinner}/>:
+          <ProgressBarAndroid styleAttr="Inverse" style={{marginTop: 50}}/>;
       break;
       case 1:
       content = <ListView

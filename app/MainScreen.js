@@ -35,7 +35,7 @@ export default class MainScreen extends Component {
         this.state = {selectedTab: HOME}
     }
     //根据需求定制tab
-    _renderTabItem(img:string,selectedImg:string,title:string,childView:object) {
+    _renderTabItem(img,selectedImg,title,childView) {
         return (
             <TabNavigator.Item
                 title = {title}

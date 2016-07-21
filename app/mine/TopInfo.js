@@ -26,7 +26,7 @@ export default class TopInfo extends React.Component {
         super(props);
     }
 
-    _onLoginClick(title:string) {
+    _onLoginClick(title) {
       if (this.props._onLoginClick) {
           this.props._onLoginClick(title);
       }

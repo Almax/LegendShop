@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
       paddingLeft: 5,
       justifyContent:'space-between',
       paddingRight: 5,
-      paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
-      height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
+      paddingTop:20,  // 处理iOS状态栏
+      height: 60,   // 处理iOS状态栏
       backgroundColor: 'white',
       alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
   },

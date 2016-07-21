@@ -147,7 +147,7 @@ export default class CartPage extends React.Component {
           );
     }
     render() {
-      
+
       let content = this.state.dataSource.getRowCount() === 0 ?
         <ActivityIndicatorIOS style={styles.scrollSpinner} />:
         <ListView
@@ -172,12 +172,14 @@ export default class CartPage extends React.Component {
               <TouchableOpacity activeOpacity={0.7}>
                 <View style={styles.bottomContainer1}>
                     <Image source={require('./image/icon_button_i_01.png')} style={styles.icon}/>
-                    <Text style={[styles.text1,{color:'white',marginLeft:5}]}>全选 总金额¥55889.00</Text>
+                    <Text style={[styles.text1,{color:'white',marginLeft:5}]}>全选 总金额:¥55889.00</Text>
                 </View>
               </TouchableOpacity>
               <View style={styles.bottomContainer1}>
                 <TouchableOpacity onPress={()=>this._onPayClick('')} activeOpacity={0.7}>
-                  <Text style={[styles.bottomText,{backgroundColor:'#FF4854',marginLeft:8}]}>结算(3)</Text>
+                    <View style={styles.bottomContainer2}>
+                        <Text style={{fontSize:12,color:'white',marginLeft:8}}>结算(3)</Text>
+                    </View>
                 </TouchableOpacity>
               </View>
             </View>
@@ -192,8 +194,8 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       paddingLeft: 5,
       paddingRight: 5,
-      paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
-      height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
+      paddingTop: 20,  // 处理iOS状态栏
+      height: 60,   // 处理iOS状态栏
       backgroundColor: 'white',
       alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
   },
@@ -223,10 +225,6 @@ const styles = StyleSheet.create({
     marginLeft:5,
     fontSize:12,
   },
-  icon:{
-    width:12,
-    height:12,
-  },
   separate:{
     height:1,
     backgroundColor:'#A7A7AA',
@@ -252,6 +250,16 @@ const styles = StyleSheet.create({
     paddingTop:11,
     paddingBottom:11,
   },
+
+    bottomContainer2: {
+        alignItems:'center',
+        width:100,
+        paddingBottom:10,
+        paddingTop: 10,
+        borderRadius:3,
+        borderColor:'#F0F0F0',
+        backgroundColor:'#FF4854'
+    },
   icon:{
     width:13,
     height:13,

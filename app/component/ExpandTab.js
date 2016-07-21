@@ -6,7 +6,9 @@ import React, {
     Text,
     Image,
     TouchableOpacity,
+    Platform,
     PropTypes,
+    ProgressBarAndroid,
     ActivityIndicatorIOS,
     ScrollView,
     StyleSheet,
@@ -115,7 +117,8 @@ export default class ExpandTab extends React.Component {
               </View>
             );
       }else{
-        return (<ActivityIndicatorIOS style={styles.scrollSpinner} />);
+        return Platform.OS === 'ios'? <ActivityIndicatorIOS style={styles.scrollSpinner}/>:
+            <ProgressBarAndroid styleAttr="Inverse" style={{marginTop:50}}/>;
       }
     }
 }
@@ -146,8 +149,8 @@ const styles = StyleSheet.create({
   container2:{
      alignItems:'center',
      flex:1,
-     height:40,
-     paddingTop:7,
+     paddingTop: 12,
+     paddingBottom:12,
      borderRightWidth:0.5,
      borderBottomWidth:0.5,
      borderColor:'#F0F0F0',
@@ -188,8 +191,6 @@ const styles = StyleSheet.create({
       color:'#6E6E6E',
   },
   childeText:{
-    paddingTop:8,
-    paddingBottom:8,
     fontSize: 12,
     color:'#6E6E6E',
   },

@@ -1,13 +1,13 @@
 /**
  * Created by ljunb on 16/5/26.
  */
-import { Dimensions } from 'react-native';
+import { Dimensions,Platform} from 'react-native';
 
 //基本的全局信息，比如窗口信息
 
 let window = {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: Platform.OS === 'ios' ? Dimensions.get('window').width : Dimensions.get('screen').width,
+    height: Platform.OS === 'ios' ? Dimensions.get('window').height : Dimensions.get('screen').height,
 }
 
 //全局颜色配置

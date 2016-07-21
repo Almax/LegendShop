@@ -18,8 +18,6 @@ import ProductDetail1 from './ProductDetail1';
 import ProductDetail2 from './ProductDetail2';
 import ProductDetail3 from './ProductDetail3';
 
-import Back from '../component/Back';
-import Swiper from 'react-native-swiper';
 import OrderCommit from '../order/OrderCommit';
 
 import Constant from '../common/Constant';
@@ -107,10 +105,14 @@ export default class ProductDetail extends React.Component{
                       </TouchableOpacity>
                       <View style={styles.bottomContainer1}>
                         <TouchableOpacity onPress={()=>this._onCartClick('加入购物车')} activeOpacity={0.7}>
-                          <Text style={[styles.bottomText,{backgroundColor:'#F47022'}]}>加入购物车</Text>
+                            <View style={[styles.bottomContainer2,{backgroundColor:'#F47022'}]}>
+                                <Text style={[styles.bottomText]}>加入购物车</Text>
+                            </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={()=>this._onPayClick('购买')} activeOpacity={0.7}>
-                          <Text style={[styles.bottomText,{backgroundColor:'#FF4854',marginLeft:8}]}>立即购买</Text>
+                            <View style={[styles.bottomContainer2,{backgroundColor:'#FF4854',marginLeft:15}]}>
+                                <Text style={[styles.bottomText]}>立即购买</Text>
+                            </View>
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -137,8 +139,8 @@ const styles = StyleSheet.create({
           flexDirection: 'row', // 水平排布
           paddingLeft: 5,
           paddingRight: 5,
-          paddingTop: Platform.OS === 'ios' ? 20 : 0, // 处理iOS状态栏
-          height: Platform.OS === 'ios' ? 60 : 60, // 处理iOS状态栏
+          paddingTop: Platform.OS === 'ios' ? 20 : 20,  // 处理iOS状态栏
+          height: Platform.OS === 'ios' ? 60 : 60,   // 处理iOS状态栏
           backgroundColor: 'white',
           alignItems: 'center' // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
       },
@@ -158,14 +160,17 @@ const styles = StyleSheet.create({
           alignItems: 'center',
           padding: 10,
       },
+      bottomContainer2: {
+          alignItems:'center',
+          width:100,
+          paddingBottom:10,
+          paddingTop: 10,
+          borderRadius:3,
+          borderColor:'#F0F0F0',
+      },
       bottomText: {
           color: 'white',
           fontSize: 12,
-          paddingLeft: 22,
-          borderRadius: 2,
-          paddingRight: 22,
-          paddingTop: 11,
-          paddingBottom: 11,
       },
       tabContainer: {
           flexDirection: 'row',
