@@ -14,6 +14,8 @@ import CategoryPage from './CategoryPage';
 import CartPage from './CartPage';
 import MinePage from './MinePage';
 
+import CodePush from "react-native-code-push";
+
 const HOME = '首页';
 const HOME_NORMAL = require('./image/icon_main_index_my_home_@2x.png');
 const HOME_FOCUS = require('./image/icon_main_index_my_home_@2x.png');
@@ -34,6 +36,11 @@ export default class MainScreen extends Component {
         super(props);
         this.state = {selectedTab: HOME}
     }
+
+    componentDidMount(){
+        CodePush.sync();
+    }
+
     //根据需求定制tab
     _renderTabItem(img,selectedImg,title,childView) {
         return (

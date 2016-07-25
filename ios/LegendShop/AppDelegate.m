@@ -11,6 +11,8 @@
 
 #import "RCTRootView.h"
 
+#import "CodePush.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -30,7 +32,7 @@
    * on the same Wi-Fi network.
    */
 
-  jsCodeLocation = [NSURL URLWithString:@"http://192.168.40.201:8081/index.ios.bundle?platform=ios&dev=true"];
+//  jsCodeLocation = [NSURL URLWithString:@"http://192.168.40.201:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
@@ -39,8 +41,13 @@
    * running the project on an actual device or running the project on the
    * simulator in the "Release" build configuration.
    */
-
-//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  
+//#ifdef DEBUG
+//  jsCodeLocation = [NSURL URLWithString:@"http://192.168.40.201:8081/index.ios.bundle?platform=ios&dev=true"];
+//#else
+  jsCodeLocation = [CodePush bundleURL];
+//#endif
+  
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"LegendShop"

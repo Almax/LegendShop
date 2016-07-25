@@ -94,18 +94,20 @@ export default class CartPage extends React.Component {
         });
     }
     _pressItem(title:string) {
-       let navigator = this.props.navigator;
-       if(navigator) {
-           navigator.push({
-               name: title,
-                 component: ProductDetail,
-               params: {
-                    title:title,
+        let navigator = this.props.navigator;
+        if(navigator) {
+            navigator.push({
+                name: title,
+                component: ProductDetail,
+                params: {
+                    title: title,
                 }
-           })
-       }
+            })
+        }
     }
     _onPayClick(){
+
+
 
     }
     _renderSeparator(
@@ -172,7 +174,7 @@ export default class CartPage extends React.Component {
               <TouchableOpacity activeOpacity={0.7}>
                 <View style={styles.bottomContainer1}>
                     <Image source={require('./image/icon_button_i_01.png')} style={styles.icon}/>
-                    <Text style={[styles.text1,{color:'white',marginLeft:5}]}>全选 总金额:¥55889.00</Text>
+                    <Text style={[styles.text1,{color:'white',marginLeft:5}]}>全选 总金额  ¥55889.00</Text>
                 </View>
               </TouchableOpacity>
               <View style={styles.bottomContainer1}>
